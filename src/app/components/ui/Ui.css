@@ -1,0 +1,22 @@
+.bg-group{
+ 
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+   
+    position: absolute;
+ 
+
+   
+}
+
+.bg-group img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+   
+ 
+}
