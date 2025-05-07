@@ -6,7 +6,7 @@ export const Add = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6">
         {/* زر إضافة باقة */}
         <div className="flex justify-center md:justify-start w-full">
-          <button className="bg-[#0177FB] text-white px-6 py-3 rounded-lg w-full md:w-auto">
+          <button className="bg-[#fb0101b4] text-white px-6 py-3 rounded-lg w-full md:w-auto">
             إضافة مستخدم جديد
           </button>
         </div>
@@ -15,7 +15,7 @@ export const Add = () => {
         <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
           <input
             type="text"
-            placeholder="البحث عن مستخدم"
+            placeholder="البحث عن باقة"
             className="border border-gray-300 rounded-lg px-4 py-2 w-full"
           />
           <button className="bg-[#0177FB] text-white px-4 py-2 rounded-lg w-full sm:w-auto">

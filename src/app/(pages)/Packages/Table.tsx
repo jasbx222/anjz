@@ -3,7 +3,7 @@ import React from 'react';
 export const Table = () => {
   return (
     <div className="container w-full mx-auto px-4 py-12">
-      <div className="w-full overflow-auto">
+      <div className="w-full overflow-x-auto">
         <table className=" w-full border border-gray-300 rounded-2xl shadow-lg">
           <thead className="bg-[#0177FB] h-[60px] text-white">
             <tr className="text-center text-lg sm:text-xl">
@@ -15,7 +15,7 @@ export const Table = () => {
           </thead>
           <tbody>
             {/* صف جدول افتراضي */}
-            <tr className="border-b hover:bg-gray-100 text-center text-base sm:text-lg">
+            <tr className="border-b  hover:bg-gray-100 text-center text-base sm:text-lg">
               <td className="px-4 py-2">باقة 1</td>
               <td className="px-4 py-2">100 ريال</td>
               <td className="px-4 py-2">نشط</td>

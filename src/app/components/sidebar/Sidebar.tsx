@@ -63,24 +63,7 @@ const Sidebar = () => {
           ))}
 
           {/* زر المزيد من المعلومات */}
-          <li>
-            <button
-              onClick={toggleMore}
-              className="w-full flex items-center justify-between gap-5 p-2 rounded-lg text-white hover:bg-white hover:text-[#0177FB] transition-all duration-200"
-            >
-              <span className="w-5 h-5">
-                <MoreVertical />
-              </span>
-              <span className="flex-1">المزيد من المعلومات</span>
-            </button>
-
-            {/* القائمة المنسدلة */}
-            <MoreLink
-              isMoreOpen={isMoreOpen}
-              moreLinks={moreLinks}
-              path={path}
-            />
-          </li>
+       
         </ul>
 
         {/* اللوغو والفوتر */}
@@ -91,3 +74,25 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
+
+
+{/* <li>
+<button
+  onClick={toggleMore}
+  className="w-full flex items-center justify-between gap-5 p-2 rounded-lg text-white hover:bg-white hover:text-[#0177FB] transition-all duration-200"
+>
+  <span className="w-5 h-5">
+    <MoreVertical />
+  </span>
+  <span className="flex-1">المزيد من المعلومات</span>
+</button>
+
+{/* القائمة المنسدلة */}
+{/* <MoreLink
+  isMoreOpen={isMoreOpen}
+  moreLinks={moreLinks}
+  path={path}
+/> */}
+// </li>
