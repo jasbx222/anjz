@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { CardHome } from "@/app/components/ui/Cards";
-import cart from './../../../../public/icons/2 User.png'
+import cart from './../../../../public/icons/userIcons.png'
 import Package from './../../../../public/icons/CART.png'
 import order from './../../../../public/icons/ORDER.png';
 import Table from "../orders/Table";
@@ -17,13 +17,14 @@ const dashboardItems = [
   {
     title: "إدارة الباقات",
     description: "تعديل التفاصيل ومراقبة الاشتراكات.",
-    icon: Package,
+    icon: order,
     href: "/dashboard/packages",
   },
   {
     title: "إدارة الطلبات",
     description: "عرض تفاصيل الطلبات والمستخدمين.",
-    icon: order,
+    icon: Package,
+
     href: "/dashboard/orders",
   },
 

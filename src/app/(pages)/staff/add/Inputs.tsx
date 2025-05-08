@@ -15,8 +15,9 @@ const Input = ({
     type={type}
     name={name}
     placeholder={label}
-    className="border-b border-[#0177FB] focus:outline-none focus:border-blue-500 py-2 px-1"
-  />
+    className="bg-gray-100 px-4 py-2 rounded-md border border-blue-200 focus:outline-none focus:ring-2 focus:ring-[#0F5BFF]"
+      
+    />
   )
 }
 

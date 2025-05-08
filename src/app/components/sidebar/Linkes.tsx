@@ -7,6 +7,8 @@ import {
   NotebookPenIcon,
   Package,
   Settings,
+  ShieldUser,
+  StarOff,
   Users,
 } from "lucide-react";
  
@@ -19,7 +21,7 @@ export const mainLinks = [
 
   { label: "إدارة التقارير", icon: <ChartArea />, href: "/reports" },
   { label: "إدارة المستخدمين", icon: <Users />, href: "/users" },
-  { label: "إعدادات النظام", icon: <Settings />, href: "/settings" },
+  { label: " ادارة الموظفين", icon: <ShieldUser />, href: "/staff" },
 ];
 
 export const moreLinks = [

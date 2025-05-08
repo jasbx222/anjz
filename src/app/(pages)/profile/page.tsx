@@ -12,7 +12,7 @@ export default function Page() {
 
             <p className="text-gray-600">jassim@email.com </p>
             <p className="text-gray-600">078445741747 </p>
-            <p className="text-gray-600">{new Date().toLocaleDateString()}</p>
+            <p className="text-gray-600">2025/5/5</p>
 
           </div>
         </div>

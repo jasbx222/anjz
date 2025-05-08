@@ -11,10 +11,10 @@ import { mainLinks, moreLinks } from "./Linkes";
 const Sidebar = () => {
   const path = usePathname();
   const [show, setShow] = useState<Boolean>(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  // const [isMoreOpen, setIsMoreOpen] = useState(false);
 
   const handleNav = () => setShow(!show);
-  const toggleMore = () => setIsMoreOpen(!isMoreOpen);
+  // const toggleMore = () => setIsMoreOpen(!isMoreOpen);
 
 
   
