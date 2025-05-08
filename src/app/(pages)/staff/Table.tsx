@@ -38,15 +38,9 @@ export const Table = () => {
   );
 
   return (
-    <div className="overflow-x-auto container w-[100%] bg-[#F5F7FA] p-6 rounded-lg shadow-md">
-      <input
-        type="text"
-        placeholder="ابحث عن موظف..."
-        className="p-2 mb-4 w-full rounded-md border border-[#C9D3DF] focus:outline-none focus:ring-2 focus:ring-[#0F5BFF] text-gray-700"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <table className="min-w-full bg-white border border-[#C9D3DF] rounded-lg shadow-sm">
+    <div className={`overflow-x-auto  bg-[#F5F7FA] p-6 rounded-lg shadow-md`}>
+    
+      <table className={`min-w-full bg-white border border-[#C9D3DF] rounded-lg shadow-sm  ${editingEmp ?"blur-2xl":''}`}>
         <thead className="bg-[#0F5BFF] text-white text-sm">
           <tr>
             <th className="py-3 px-4 text-left">اسم الموظف</th>

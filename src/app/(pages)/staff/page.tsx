@@ -1,18 +1,8 @@
-
-import {  Plus, Search, X } from "lucide-react";
+import { Plus, Search, X } from "lucide-react";
 import Link from "next/link";
-import Update from "./update/Update";
 import { Table } from "./Table";
 
-
-export default function StaffListPage() {
-
-
-
-
-
-
-
+export default function Page() {
   return (
     <div className="relative mt-10 container w-[100%] px-4 lg:px-8">
       {/* Header & Search */}
@@ -29,13 +19,11 @@ export default function StaffListPage() {
           <input
             type="text"
             placeholder="ابحث عن موظف..."
-          
             className="w-full py-2 pr-10 pl-4 rounded-full border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0F5BFF]"
           />
         </div>
-    
       </div>
-      <Table/>
+      <Table />
     </div>
   );
 }
