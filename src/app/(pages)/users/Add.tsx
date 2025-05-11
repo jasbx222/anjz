@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export const Add = () => {
@@ -6,9 +7,11 @@ export const Add = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6">
         {/* زر إضافة باقة */}
         <div className="flex justify-center md:justify-start w-full">
+       <Link href={'/users/form'}>
           <button className="bg-[#fb0101b4] text-white px-6 py-3 rounded-lg w-full md:w-auto">
             إضافة مستخدم جديد
           </button>
+          </Link>
         </div>
 
         {/* البحث */}

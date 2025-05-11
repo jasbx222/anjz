@@ -1,8 +1,9 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import Cards from './Cards';
-import { Table } from './Table';
+
 import users from './../../../../public/icons/users.png';
-import seling from './../../../../public/icons/seling.png';
+import selling from './../../../../public/icons/seling.png';
 import rev from './../../../../public/icons/revenuse.png';
 import { StaticImageData } from 'next/image';
 
@@ -21,7 +22,7 @@ const dataCards: CardData[] = [
     icon: users,
   },
   {
-    title: 'عدد الباقات',
+    title: 'الإيرادات',
     value: 300,
     color: 'bg-red-500',
     icon: rev,
@@ -30,15 +31,16 @@ const dataCards: CardData[] = [
     title: 'عدد المبيعات',
     value: 400,
     color: 'bg-yellow-500',
-    icon: seling,
+    icon: selling,
   },
 ];
 
 const Page: React.FC = () => {
+ 
   return (
-    <div className="container mx-auto w-full bg-white/90">
-      <Cards data={dataCards} />
-      <Table />
+    <div className="container mx-auto w-full bg-white/90 p-4 rounded-xl shadow-lg">
+      <Cards data={dataCards}  />
+  
     </div>
   );
 };

@@ -1,11 +1,13 @@
-import React from "react";
+"use client";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
-
 import { CardHome } from "@/app/components/ui/Cards";
-import cart from './../../../../public/icons/userIcons.png'
-import Package from './../../../../public/icons/CART.png'
-import order from './../../../../public/icons/ORDER.png';
+import cart from "./../../../../public/icons/userIcons.png";
+import Package from "./../../../../public/icons/CART.png";
+import order from "./../../../../public/icons/ORDER.png";
 import Table from "../orders/Table";
+// import { AuthContext, useAuth } from "@/app/context/useContext";
+import { useRouter } from "next/navigation";
 
 const dashboardItems = [
   {
@@ -24,18 +26,26 @@ const dashboardItems = [
     title: "إدارة الطلبات",
     description: "عرض تفاصيل الطلبات والمستخدمين.",
     icon: Package,
-
     href: "/dashboard/orders",
   },
-
-
-
 ];
 
 export default function Page() {
+
+  // const token = useAuth();
+  // const router = useRouter();
+
+  // useEffect(() => {
+  //   if (!token) {
+  //     router.push('/login'); // ✅ التوجيه هنا فقط
+  //   }
+  // }, [token, router]);
+
+  // if (!token) return null;
+
+
   return (
     <div className="p-6 space-y-6">
-
       <div className="grid container W-[100%] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {dashboardItems.map((item) => (
           <Link key={item.title} href={item.href}>
@@ -48,10 +58,9 @@ export default function Page() {
           </Link>
         ))}
       </div>
-      <Table/>
-      
-      
-
+      <div>
+        <Table />
+      </div>
     </div>
   );
 }

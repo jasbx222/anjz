@@ -1,14 +1,16 @@
-import React from 'react';
 
+import Link from "next/link";
 export const Add = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6">
         {/* زر إضافة باقة */}
         <div className="flex justify-center md:justify-start w-full">
-          <button className="bg-[#fb0101b4] text-white px-6 py-3 rounded-lg w-full md:w-auto">
-            إضافة باقة جديدة
-          </button>
+          <Link href={"/Packages/form"}>
+            <button className="bg-[#fb0101b4] text-white px-6 py-3 rounded-lg w-full md:w-auto">
+              إضافة باقة جديدة
+            </button>
+          </Link>
         </div>
 
         {/* البحث */}

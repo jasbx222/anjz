@@ -41,7 +41,7 @@ export const Table = () => {
     <div className={`overflow-x-auto  bg-[#F5F7FA] p-6 rounded-lg shadow-md`}>
     
       <table className={`min-w-full bg-white border border-[#C9D3DF] rounded-lg shadow-sm  ${editingEmp ?"blur-2xl":''}`}>
-        <thead className="bg-[#0F5BFF] text-white text-sm">
+        <thead className="bg-[#0177FB] h-[60px] text-white text-sm">
           <tr>
             <th className="py-3 px-4 text-left">اسم الموظف</th>
             <th className="py-3 px-4 text-left">البريد الإلكتروني</th>
@@ -65,7 +65,7 @@ export const Table = () => {
               </td>
               <td className="py-3 px-4 text-sm text-gray-600 text-center">
                 <button
-                  className="flex items-center gap-1 text-sm bg-[#0F5BFF] text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition"
+                  className="flex items-center gap-1  text-sm bg-[#0177FB] text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition"
                   onClick={handleEdit}
                 >
                   <PenLine className="w-4 h-4" />
@@ -79,7 +79,7 @@ export const Table = () => {
       {/* Employee Cards */}
     
       {
-        editingEmp ? (<Update  />):('')
+        editingEmp ? (<Update editingEmp={setEditingEmp}  />):('')
       }
 
       

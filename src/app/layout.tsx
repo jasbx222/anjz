@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import { Header } from "./components/header/Header";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="ar" dir="rtl">
       <body
@@ -32,6 +34,10 @@ export default function RootLayout({
 
           antialiased bg-gray-100 min-h-screen flex flex-row-reverse`}
       >
+
+
+
+        
         {/* Sidebar ثابت على اليمين */}
         <div className="">
           <Sidebar />
@@ -40,8 +46,16 @@ export default function RootLayout({
         {/* محتوى الصفحة يزاح لليسار بوجود السايدبار */}
         <div className="flex-1 md:mr-32  p-4">
           <Header />
-          <main className="mt-4">{children}</main>
+          
+          <main className="mt-4">
+   
+      {children}
+      
+         
+            </main>
         </div>
+      
+
       </body>
     </html>
   );
