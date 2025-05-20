@@ -12,7 +12,7 @@ export const Header = () => {
     `${process.env.NEXT_PUBLIC_BASE_URL}/ticket`
   );
   return (
-    <header  className="bg-gray-100 container  rounded-2xl px-6 py-4  flex items-center justify-between">
+    <header dir="" className="bg-gray-100 container  rounded-2xl px-6 py-4  flex items-center justify-between">
       {/* العنوان */}
       <h1 className="text-xl font-bold text-gray-800">{""}</h1>
 
