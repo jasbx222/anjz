@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 
 interface InputProps {
@@ -13,7 +14,7 @@ export const Inputs = ({ name, label, type = "text" }: InputProps) => {
         type={type}
         placeholder={label}
         name={name}
-        className="border border-blue-200 rounded px-4 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="border w-full border-blue-200 rounded px-4 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
     </div>
   );

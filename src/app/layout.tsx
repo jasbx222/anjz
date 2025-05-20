@@ -30,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
+      dir="rtl"
         className={`${geistSans.variable} ${geistMono.variable} 
 
           antialiased bg-gray-100 min-h-screen flex flex-row-reverse`}

@@ -1,32 +1,25 @@
-// "use server";
+'use client'
+import axios from "axios";
+import { useState } from "react";
 
-// import axios from "axios";
-// import { cookies } from "next/headers";
+export default function useLogin() {
+  const [response, setResponse] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
-// export const useLogin = async (formData: FormData) => {
-//   const email = formData.get("email");
-//   const password = formData.get("password");
+  const login = async (url: string, data: any) => {
+    try {
+      const res = await axios.post(url, data);
+ const token = res.data?.token;
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+    } catch (error: any) {
+      console.error(" فشل الإرسال:", error);
+      setResponse(" 🥺 حدث خطأ أثناء الإرسال");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   try {
-//   const res:any =  await axios
-//       .post("https://back.kadrapp.com/admin/v1/auth/login", {
-//    email: email,
-//     password: password,
-//       })
-      
-//      const token = res.data?.token;
-
-//     if (token) {
-//        const cookieStore = await cookies();
-//       cookieStore.set('token', token, {
-//          httpOnly: true,
-//          path: "/",
-//          secure: true,
-//          sameSite: "strict",
-//          maxAge: 60 * 60 * 24 * 7, // 7 أيام
-//        });
-//     }
-//   } catch (error: any) {
-//     console.log(error.message);
-//   }
-// };
+  return { login, response, loading };
+}

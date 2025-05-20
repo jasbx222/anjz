@@ -1,17 +1,21 @@
 'use client'
 import React from 'react'
 interface Props {
-    name:string;
-    type:string;
-    label:string
+  name: string;
+  type: string;
+  label: string;
+  onChanges?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 const Input = ({
     type,
+    onChanges,
     name,
     label
 }:Props) => {
   return (
     <input
+    onChange={onChanges}
     type={type}
     name={name}
     placeholder={label}

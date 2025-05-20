@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {   useState } from "react";
+import {   useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { MoreLink } from "./MoreLinks";
-import { Menu, MoreVertical, X } from "lucide-react";
-import { mainLinks, moreLinks } from "./Linkes";
+import { Menu, X } from "lucide-react";
+import { mainLinks } from "./Linkes";
+import useArrowNavigation from "./ArrowUpDwon";
 
 const Sidebar = () => {
   const path = usePathname();
@@ -15,6 +15,26 @@ const Sidebar = () => {
 
   const handleNav = () => setShow(!show);
   // const toggleMore = () => setIsMoreOpen(!isMoreOpen);
+useArrowNavigation()
+  //زر الاختصارات عند الضغط على زر الاول يفتح والثاني يغلق
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.ctrlKey && e.key.toLowerCase() === "o") {
+      e.preventDefault();
+  setShow(true)
+    }
+    if(e.ctrlKey && e.key.toLowerCase() === "c"){
+      e.preventDefault();
+  setShow(false) 
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [show]);
 
 
   
@@ -67,7 +87,7 @@ const Sidebar = () => {
         </ul>
 
         {/* اللوغو والفوتر */}
-        <Logo />
+        {/* <Logo /> */}
       </div>
     </nav>
   );
@@ -76,23 +96,3 @@ const Sidebar = () => {
 export default Sidebar;
 
 
-
-
-{/* <li>
-<button
-  onClick={toggleMore}
-  className="w-full flex items-center justify-between gap-5 p-2 rounded-lg text-white hover:bg-white hover:text-[#0177FB] transition-all duration-200"
->
-  <span className="w-5 h-5">
-    <MoreVertical />
-  </span>
-  <span className="flex-1">المزيد من المعلومات</span>
-</button>
-
-{/* القائمة المنسدلة */}
-{/* <MoreLink
-  isMoreOpen={isMoreOpen}
-  moreLinks={moreLinks}
-  path={path}
-/> */}
-// </li>

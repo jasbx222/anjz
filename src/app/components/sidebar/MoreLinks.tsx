@@ -9,7 +9,8 @@ export interface Links {
 export interface MoreLinkProps {
   isMoreOpen?: boolean;
   moreLinks?: Links[] | undefined;
-  path?: string;}
+  path?: string;
+} 
 
 export const MoreLink = ({
   isMoreOpen,
