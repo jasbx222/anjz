@@ -8,7 +8,7 @@ interface ReplyFormProps {
   ticketId: number;
 }
 
-const ReplyForm: React.FC<ReplyFormProps> = () => {
+const Page: React.FC<ReplyFormProps> = () => {
   const { id } = useParams();
   const [message, setMessage] = useState("");
   const { add, response } = usePost();
@@ -62,4 +62,4 @@ const ReplyForm: React.FC<ReplyFormProps> = () => {
   );
 };
 
-export default ReplyForm;
+export default Page;
