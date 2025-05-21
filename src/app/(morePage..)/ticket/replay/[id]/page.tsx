@@ -1,14 +1,13 @@
 "use client";
 
 import usePost from "@/app/components/hooks/usePost";
+import { withAuth } from "@/app/components/withAuth";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
-interface ReplyFormProps {
-  ticketId: number;
-}
 
-const Page: React.FC<ReplyFormProps> = () => {
+
+const Page: React.FC<any> = () => {
   const { id } = useParams();
   const [message, setMessage] = useState("");
   const { add, response } = usePost();
@@ -60,4 +59,4 @@ const Page: React.FC<ReplyFormProps> = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page)
