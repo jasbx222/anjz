@@ -24,15 +24,14 @@ const Page: React.FC<ReplyFormProps> = () => {
   };
   return (
     <form
-    dir="rtl"
+      dir="rtl"
       onSubmit={handleSubmit}
       className="max-w-3xl mx-auto mt-8 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg"
     >
+      الرد على التذكرة {id}
       <h2 className="text-2xl font-bold text-right text-[#0177FB] mb-4">
-        الرد على التذكرة {id}
-        {response && <h2>{response}</h2>}
+        {response && response}
       </h2>
-
       <div className="mb-4">
         <label
           htmlFor="message"
@@ -49,13 +48,12 @@ const Page: React.FC<ReplyFormProps> = () => {
           placeholder="اكتب ردك هنا..."
         ></textarea>
       </div>
-
       <div className="text-right">
         <button
           type="submit"
           className="px-6 py-2 bg-[#0177FB] text-white rounded-xl hover:bg-blue-600 transition disabled:opacity-50"
         >
-          replay
+          الرد
         </button>
       </div>
     </form>

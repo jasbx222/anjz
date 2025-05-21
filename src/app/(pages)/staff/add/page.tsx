@@ -2,10 +2,10 @@
 import usePost from "@/app/components/hooks/usePost";
 import Input from "./Inputs";
 import { FormEvent, useState } from "react";
-import Swal from "sweetalert2";
-import { redirect } from "next/navigation";
 
-export default function Page() {
+import { withAuth } from "@/app/components/withAuth";
+
+ function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { add, response, loading } = usePost();
 
@@ -105,3 +105,4 @@ export default function Page() {
     </div>
   );
 }
+export default withAuth(Page)

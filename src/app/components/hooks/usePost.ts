@@ -22,7 +22,9 @@ export default function usePost() {
       const body = isFormData ? data : JSON.stringify(data);
 
       const res = await axios.post(url, body, { headers });
-      
+      if(res.status===400){
+          setResponse(" لا يمكن الارسال ربما العنصر مغلق   ");
+      }
      setResponse("😍 تمت الإضافة بنجاح");
    
        

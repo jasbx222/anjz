@@ -1,10 +1,29 @@
-import useGet from "@/app/components/hooks/useGet";
+import Pagination from "@/app/components/pageination/Pageination";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+export const Table = ({ data, loading }: any) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-export const Table = () => {
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
-  const { data, loading } = useGet<any>(`${url}/client`);
+  const itemsPerPage = 5;
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+
+  if (!Array.isArray(data)) return null;
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const currentItems = data.slice(start, end);
+
+  const goToPage = (page: number) => {
+    router.push(`?page=${page}`);
+  };
   return (
-    <div dir="rtl" className="container w-full mx-auto px-4 py-12">
+    <div
+      dir="rtl"
+      className="container hidden md:block w-full mx-auto px-4 py-5"
+    >
       <div className="w-full overflow-x-auto">
         <table className="w-full border border-gray-300 rounded-2xl shadow-lg">
           <thead className="bg-[#0177FB] h-[60px] text-white">
@@ -36,9 +55,9 @@ export const Table = () => {
                 </td>
               </tr>
             ) : (
-              data.map((user, index) => (
+              currentItems.map((user: any) => (
                 <tr
-                  key={index}
+                  key={user.id}
                   className=" hover:bg-gray-100 text-center text-base sm:text-lg"
                 >
                   <td className="px-4 py-2">{user.name}</td>
@@ -47,12 +66,11 @@ export const Table = () => {
                   <td className="px-4 py-2">{user.created}</td>
                   <td className="px-4 py-2">
                     <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
-                      <button className="bg-[#0177FB] text-white px-4 py-2 rounded-lg whitespace-nowrap">
-                        تعديل
-                      </button>
-                      <button className="bg-red-500 text-white px-4 py-2 rounded-lg whitespace-nowrap">
-                        حذف
-                      </button>
+                      <Link href={`/users/show/${user.id}`}>
+                        <button className="bg-green-500 text-white px-4 py-2 rounded-lg whitespace-nowrap">
+                          تفاصيل
+                        </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -60,6 +78,11 @@ export const Table = () => {
             )}
           </tbody>
         </table>
+        <Pagination
+          goToPage={goToPage}
+          totalPages={totalPages}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

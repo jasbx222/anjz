@@ -5,8 +5,9 @@ import Swal from "sweetalert2";
 import { redirect, useParams } from "next/navigation";
 import Link from "next/link";
 import useUpdateFaq from "@/app/components/hooks/useUpdateFaq";
+import { withAuth } from "@/app/components/withAuth";
 
-export default function Page() {
+ function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { update, response, loading } = useUpdateFaq();
 const {id}=useParams();
@@ -82,3 +83,4 @@ const {id}=useParams();
     </div>
   );
 }
+export default withAuth(Page)

@@ -2,14 +2,11 @@
 
 import usePutClosedMsg from "@/app/components/hooks/usePutClosedMsg";
 import useShow from "@/app/components/hooks/useShow";
-
 import { FolderClosed } from "lucide-react";
-
 import { useParams } from "next/navigation";
 
 interface Message {
   id: number;
-  sender: string;
   message: string;
 }
 
@@ -28,14 +25,14 @@ interface Ticket {
 const Page: React.FC = () => {
   const { id } = useParams();
   const { update, response } = usePutClosedMsg();
-  const { data, loading } = useShow<any>(
+  const { data, loading } = useShow<Ticket>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/ticket`,
     id
   );
 
   if (loading)
     return (
-      <div  className="text-center text-gray-500 mt-10">
+      <div className="text-center text-gray-500 mt-10">
         جاري تحميل التذكرة...
       </div>
     );
@@ -45,7 +42,10 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div  dir="rtl" className="max-w-4xl mx-auto mt-12 p-6 bg-white rounded-2xl shadow-lg">
+    <div
+      dir="rtl"
+      className="max-w-4xl mx-auto mt-12 p-6 bg-white rounded-2xl shadow-lg"
+    >
       <h1 className="text-2xl font-bold text-[#0177FB] mb-6 text-right">
         تفاصيل التذكرة
       </h1>
@@ -57,9 +57,10 @@ const Page: React.FC = () => {
         </p>
         <p>
           <span className="font-semibold text-gray-700">اسم العميل:</span>{" "}
-          {data?.client.name}
+          {typeof data?.client?.name === "string"
+            ? data.client.name
+            : "اسم غير متوفر"}
         </p>
-
         <p>
           <span className="font-semibold text-gray-700">الحالة:</span>
           <span
@@ -76,21 +77,10 @@ const Page: React.FC = () => {
 
       <div className="bg-gray-50 p-4 rounded-xl mb-8 max-h-96 overflow-y-auto border border-gray-200">
         <h2 className="font-bold mb-4 text-gray-700 text-right">الرسائل:</h2>
-        {data?.messages.length > 0 ? (
-          data.messages.map((msg: any) => (
-            <div
-              key={msg.id}
-              className={`mb-4 p-3 rounded-lg ${
-                msg.sender === "client"
-                  ? "bg-white text-right"
-                  : "bg-blue-50 text-left"
-              }`}
-            >
-              <p className="text-sm text-gray-600 mb-1">
-
-         <span className="rtl text-red-500" dir="rtl" >  اسم العميل:    {msg.sender}</span>
-              </p>
-              <p className="text-gray-800">{msg.message}</p>
+        {Array.isArray(data?.messages) && data.messages.length > 0 ? (
+          data.messages.map((msg: Message) => (
+            <div key={msg.id} className={`mb-4 p-3 rounded-lg `}>
+              <p className="text-gray-800">{msg?.message ?? "null"}</p>
             </div>
           ))
         ) : (
@@ -106,7 +96,11 @@ const Page: React.FC = () => {
         اغلاق
       </button>
 
-      {response && <h1>{response}</h1>}
+      {response && (
+        <p className="mt-4 text-green-600 font-semibold text-right">
+          {response}
+        </p>
+      )}
     </div>
   );
 };

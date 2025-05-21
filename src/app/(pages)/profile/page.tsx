@@ -1,6 +1,8 @@
+'use client'
+import { withAuth } from "@/app/components/withAuth";
 import { Inputs } from "./Inputs";
 
-export default function Page() {
+ function Page() {
   return (
     <div
       dir="rtl"
@@ -29,3 +31,4 @@ export default function Page() {
     </div>
   );
 }
+export default withAuth(Page)

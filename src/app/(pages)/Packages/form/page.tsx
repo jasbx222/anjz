@@ -2,8 +2,7 @@
 import React, { FormEvent, useState } from "react";
 import { Input } from "./Inputs";
 import usePost from "@/app/components/hooks/usePost";
-import Swal from "sweetalert2";
-import { h1 } from "framer-motion/client";
+import { withAuth } from "@/app/components/withAuth";
 
 const Page = () => {
 
@@ -60,4 +59,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page)

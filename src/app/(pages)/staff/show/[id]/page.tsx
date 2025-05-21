@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import useShow from "@/app/components/hooks/useShow";
 import { User2, ShieldCheck, Mail } from "lucide-react";
+import { withAuth } from "@/app/components/withAuth";
 
 interface Employee {
   id: number;
@@ -34,7 +35,7 @@ const translateRole = (role: string): string => {
   }
 };
 
-export default function EmployeeDetailsPage() {
+ function Page() {
   const { id } = useParams();
   const { data, loading } = useShow<Employee>(`${process.env.NEXT_PUBLIC_BASE_URL}/employee`, id);
 
@@ -87,3 +88,4 @@ export default function EmployeeDetailsPage() {
     </div>
   );
 }
+export default withAuth(Page)

@@ -1,6 +1,7 @@
 "use client";
 
 import useUpdate from "@/app/components/hooks/useUpdate";
+import { withAuth } from "@/app/components/withAuth";
 import { X } from "lucide-react";
 import { redirect, useParams } from "next/navigation";
 import React, { FormEvent, InputHTMLAttributes, useRef, useState } from "react";
@@ -84,4 +85,4 @@ onChange={(e:any)=>setPass(e.target.value)}
   );
 };
 
-export default Page;
+export default withAuth(Page)

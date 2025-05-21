@@ -5,19 +5,22 @@ import { ChevronDown, LogOut, Bell, UserCheck, Settings, CircleAlertIcon } from 
 import { useState } from "react";
 import Link from "next/link";
 import useGet from "../hooks/useGet";
+import { getToken } from "@/app/context/getToken";
 
 export const Header = () => {
   const [down, setDown] = useState(false);
-  const { data, loading } = useGet<any>(
+  const { data } = useGet<any>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/ticket`
+    
   );
+   const token =  getToken('token')
   return (
     <header dir="" className="bg-gray-100 container  rounded-2xl px-6 py-4  flex items-center justify-between">
       {/* العنوان */}
-      <h1 className="text-xl font-bold text-gray-800">{""}</h1>
-
+    {""}
       {/* أدوات التحكم */}
-      <div className="flex fixed top-5 left-4 items-center gap-4 ">
+     {
+      token ? ( <div className="flex fixed top-5 left-4 items-center gap-4 ">
         {/* المستخدم */}
         <div
           className="flex items-center gap-3 cursor-pointer select-none"
@@ -91,7 +94,8 @@ export const Header = () => {
             </ul>
           </div>
         )}
-      </div>
+      </div>):('')
+     }
     </header>
   );
 };

@@ -1,10 +1,14 @@
-// 'use server'
+import { useEffect, useState } from "react";
 
-// import { cookies } from "next/headers";
+export const getToken = (key: string) => {
+  const [token, setToken] = useState<string | null>(null);
 
-// export const getToken = async (token:string) => {
-//      const cookieStore = await cookies()
-//      const tokens= cookieStore.get(token)?.value;
-    
-//   return tokens
-// }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem(key);
+      setToken(storedToken);
+    }
+  }, [key]);
+
+  return token;
+};

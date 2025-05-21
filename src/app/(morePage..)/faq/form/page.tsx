@@ -5,8 +5,9 @@ import Input from "./Input";
 import Swal from "sweetalert2";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { withAuth } from "@/app/components/withAuth";
 
-export default function Page() {
+ function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { add, response, loading } = usePost();
 
@@ -86,3 +87,4 @@ export default function Page() {
     </div>
   );
 }
+export default withAuth(Page)

@@ -5,6 +5,9 @@ import { CardHome } from "@/app/components/ui/Cards";
 import cart from "./../../../../public/icons/userIcons.png";
 import Package from "./../../../../public/icons/CART.png";
 import order from "./../../../../public/icons/ORDER.png";
+import { Table } from "./Table";
+import { PlanChart } from "./Plan";
+import { withAuth } from "@/app/components/withAuth";
 const dashboardItems = [
   {
     title: "إدارة المستخدمين",
@@ -27,7 +30,9 @@ const dashboardItems = [
   },
 ];
 
-export default function Page() {
+ function Page() {
+
+
   return (
     <div dir="rtl" className="p-6 space-y-6">
       <div className="grid container W-[100%] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -42,7 +47,11 @@ export default function Page() {
           </Link>
         ))}
       </div>
-      <div></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <Table />
+        <PlanChart />
+      </div>
     </div>
   );
 }
+export default withAuth(Page)

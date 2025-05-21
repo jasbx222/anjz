@@ -4,6 +4,7 @@ import { Add, SearchPlan } from "./Add";
 import { Table } from "./Table";
 import useGet from "@/app/components/hooks/useGet";
 import TableMobile from "./TableMobile";
+import { withAuth } from "@/app/components/withAuth";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -32,5 +33,4 @@ const filterPlan = data.filter((plan) => plan.title.toLowerCase().includes(query
     </div>
   );
 };
-
-export default Page;
+export default withAuth(Page)

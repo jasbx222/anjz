@@ -1,9 +1,10 @@
 "use client";
 
 import usePost from "@/app/components/hooks/usePost";
+import { withAuth } from "@/app/components/withAuth";
 import React, { useState } from "react";
 
-const AddNotification = () => {
+const Page = () => {
   const [title, setTitle] = useState("");
   const [body, setDescription] = useState("");
 
@@ -69,5 +70,4 @@ const AddNotification = () => {
     </div>
   );
 };
-
-export default AddNotification;
+export default withAuth(Page)

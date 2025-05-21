@@ -1,12 +1,13 @@
 "use client";
 
 import useShow from "@/app/components/hooks/useShow";
+import { withAuth } from "@/app/components/withAuth";
 import { PlanShowType } from "@/app/models/types.";
 import { BadgeCheck, XCircle, Pencil, Users, CoinsIcon, Banknote } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-const PlanDetailsPage = () => {
+const Page = () => {
  const { id } = useParams(); // يحصل على ID من الـ URL
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { data, loading } = useShow<PlanShowType>(`${url}/plan`, id);
@@ -72,4 +73,4 @@ const PlanDetailsPage = () => {
   );
 };
 
-export default PlanDetailsPage;
+export default withAuth(Page)

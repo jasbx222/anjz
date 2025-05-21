@@ -3,6 +3,7 @@
 import usePost from "@/app/components/hooks/usePost";
 import React, { useState } from "react";
 import { Input } from "./Inputs";
+import { withAuth } from "@/app/components/withAuth";
 const Page = () => {
   const [whatsApp, setWhatsApp] = useState("");
   const [facebook, setFacebook] = useState("");
@@ -117,5 +118,4 @@ const Page = () => {
     </div>
   );
 };
-
-export default Page;
+export default withAuth(Page)

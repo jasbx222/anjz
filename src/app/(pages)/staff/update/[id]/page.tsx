@@ -4,6 +4,7 @@ import React, { FormEvent, useState } from "react";
 import useUpdate from "@/app/components/hooks/useUpdate";
 import { redirect, useParams } from "next/navigation";
 import { Input } from "../Inputs";
+import { withAuth } from "@/app/components/withAuth";
 const Page = () => {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { update, response, loading } = useUpdate();
@@ -55,4 +56,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page)

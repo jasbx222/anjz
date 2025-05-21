@@ -1,11 +1,9 @@
 "use client";
 import React, { FormEvent, useState } from "react";
-import usePost from "@/app/components/hooks/usePost";
-import Swal from "sweetalert2";
-import { h1 } from "framer-motion/client";
 import { Input } from "../Inputs";
 import useUpdate from "@/app/components/hooks/useUpdate";
 import { useParams } from "next/navigation";
+import { withAuth } from "@/app/components/withAuth";
 
 const Page = () => {
   const [title, setTitle] = useState<string>("");
@@ -92,5 +90,4 @@ const Page = () => {
     </div>
   );
 };
-
-export default Page;
+export default withAuth(Page)

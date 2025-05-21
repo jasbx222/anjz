@@ -7,8 +7,10 @@ import { Logo } from "./Logo";
 import { Menu, X } from "lucide-react";
 import { mainLinks } from "./Linkes";
 import useArrowNavigation from "./ArrowUpDwon";
+import { getToken } from "@/app/context/getToken";
 
 const Sidebar = () => {
+    const token =  getToken('token')
   const path = usePathname();
   const [show, setShow] = useState<Boolean>(false);
   // const [isMoreOpen, setIsMoreOpen] = useState(false);
@@ -40,7 +42,9 @@ useEffect(() => {
   
 
   return (
-    <nav className="fixed top-0 right-0 z-50" dir="rtl">
+   <>
+   {
+    token ? ( <nav className="fixed top-0 right-0 z-50" dir="rtl">
       {/* زر القائمة الجانبية */}
       <button onClick={handleNav} className="text-[#0177FB]  px-4 py-2">
         <Menu size={40} />
@@ -89,7 +93,9 @@ useEffect(() => {
         {/* اللوغو والفوتر */}
         {/* <Logo /> */}
       </div>
-    </nav>
+    </nav>):('')
+   }
+   </>
   );
 };
 

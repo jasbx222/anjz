@@ -1,8 +1,10 @@
-import { Plus, Search, X } from "lucide-react";
+'use client'
+import { Plus} from "lucide-react";
 import Link from "next/link";
 import { Table } from "./Table";
+import { withAuth } from "@/app/components/withAuth";
 
-export default function Page() {
+ function Page() {
   return (
     <div dir="rtl" className="relative mt-10 container w-[100%] px-4 lg:px-8">
       {/* Header & Search */}
@@ -18,3 +20,4 @@ export default function Page() {
     </div>
   );
 }
+export default withAuth(Page)

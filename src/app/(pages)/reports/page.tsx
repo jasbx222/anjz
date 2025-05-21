@@ -7,6 +7,7 @@ import rev from "./../../../../public/icons/revenuse.png";
 import { StaticImageData } from "next/image";
 import { DataCards } from "@/app/models/types.";
 import useGetReport from "@/app/components/hooks/useGetReport";
+import { withAuth } from "@/app/components/withAuth";
 
 const url = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -72,4 +73,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page)
