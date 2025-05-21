@@ -5,8 +5,9 @@ import { Eye, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import TableMobile from "./TableMobile";
+import { withAuth } from "@/app/components/withAuth";
 
-const TicketsTable: React.FC = () => {
+const Page: React.FC = () => {
   const { data, loading } = useGet<any>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/ticket`
   );
@@ -90,4 +91,4 @@ const TicketsTable: React.FC = () => {
   );
 };
 
-export default TicketsTable;
+export default withAuth(Page)
