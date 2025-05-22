@@ -2,6 +2,7 @@
 
 import usePutClosedMsg from "@/app/components/hooks/usePutClosedMsg";
 import useShow from "@/app/components/hooks/useShow";
+import { withAuth } from "@/app/components/withAuth";
 import { FolderClosed } from "lucide-react";
 import { useParams } from "next/navigation";
 
@@ -105,4 +106,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page)

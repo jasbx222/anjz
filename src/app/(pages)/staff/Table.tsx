@@ -14,6 +14,7 @@ export const Table = () => {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { data, loading } = useGet<Empolyes>(`${url}/employee`);
   const [search, setSearch] = useState("");
+  const [msg, setMsg] = useState("");
   const [statusFilter, setStatusFilter] = useState<
     "all" | "active" | "deactive"
   >("all");
@@ -53,6 +54,10 @@ export const Table = () => {
   const [toggleLoading, setToggleLoading] = useState<string | null>(null);
 
   const handleDelete = (id: string) => {
+       if(!id){
+        setMsg('هذا المستخدم تم حذفة')
+      }
+
     const deleteUrl = `${url}/employee/${id}`;
     remove(deleteUrl);
   };
@@ -61,7 +66,7 @@ export const Table = () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
-
+   
       setToggleLoading(id);
       await fetch(`${url}/employee/${id}/toggle-active`, {
         method: "PUT",
@@ -177,6 +182,7 @@ export const Table = () => {
                           <Trash2 className="w-4 h-4" />
                           حذف
                         </button>
+                        {msg && msg}
                         <Link href={`/staff/show/${emp.id}`}>
                           <button className="flex items-center gap-1 text-sm bg-green-500 text-white px-4 py-1.5 rounded-full hover:bg-red-600 transition">
                             <Eye className="w-4 h-4" />

@@ -7,12 +7,20 @@ import TableMobile from "./TableMobile";
 import useDelete from "@/app/components/hooks/useDelete";
 import Swal from "sweetalert2";
 import Link from "next/link";
+export type MediaItem = {
+  id: any;
+  title: string;
+  description: string;
+  media_extension: string; // مثال: "jpg", "mp4"
+  media_type: string;      // مثال: "image", "video"
+  media_url: string;       // رابط الوسائط
+};
 
 export const Table = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const url = process.env.NEXT_PUBLIC_BASE_URL;
-  const { data, loading } = useGet<any>(`${url}/faq`);
+  const { data, loading } = useGet<MediaItem>(`${url}/faq`);
 
   const itemsPerPage = 5;
   const currentPage = parseInt(searchParams.get("page") || "1", 10);

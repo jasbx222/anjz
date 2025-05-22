@@ -7,21 +7,22 @@ import { withAuth } from "@/app/components/withAuth";
 
  function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
-  const { add, response, loading } = usePost();
+  const { add, response } = usePost();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPass] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]); // الآن نخزن الأسماء
 
   const rolesList = [
-    { id: 1, name: "plan_management" },
-    { id: 2, name: "ticket_management" },
-    { id: 3, name: "client_management" },
-    { id: 4, name: "employee_management" },
-    { id: 5, name: "notification_management" },
-    { id: 6, name: "subscription_management" },
-    { id: 7, name: "system_parameter_management" },
-    { id: 8, name: "report_management" },
+    { id: 0, name: "plan_management" },
+    { id: 1, name: "ticket_management" },
+    { id: 2, name: "client_management" },
+    { id: 3, name: "employee_management" },
+    { id: 4, name: "notification_management" },
+    { id: 5, name: "subscription_management" },
+    { id: 6, name: "system_parameter_management" },
+    { id: 7, name: "report_management" },
+    { id: 8, name: "faq_management" },
   ];
 
   const handleRoleChange = (roleName: string) => {
@@ -60,17 +61,18 @@ import { withAuth } from "@/app/components/withAuth";
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
     
-          <Input
-            label="كلمة المرور"
-            onChanges={(e: any) => setPass(e.target.value)}
-            type="password"
-            name="password"
-          />
+       
                 <Input
             label="ايميل الموظف"
             onChanges={(e: any) => setEmail(e.target.value)}
             type="email"
             name="email"
+          />
+             <Input
+            label="كلمة المرور"
+            onChanges={(e: any) => setPass(e.target.value)}
+            type="password"
+            name="password"
           />
         </div>
 

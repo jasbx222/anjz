@@ -25,13 +25,13 @@ export default function usePost() {
       if(res.status===400){
           setResponse(" لا يمكن الارسال ربما العنصر مغلق   ");
       }
-     setResponse("😍 تمت الإضافة بنجاح");
+     setResponse(" تمت الإضافة بنجاح");
    
        
    
     } catch (error: any) {
       console.error(" فشل الإرسال:", error);
-      setResponse(" 🥺 حدث خطأ أثناء الإرسال");
+      setResponse("  حدث خطأ أثناء الإرسال");
     } finally {
       setLoading(false);
     }

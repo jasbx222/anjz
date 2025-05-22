@@ -31,7 +31,7 @@ const TableMobile: React.FC<Props> = ({
       {filteredEmployees.map((emp, index) => (
         <div
           key={index}
-          className="bg-white p-4 rounded-lg shadow border border-gray-200"
+          className="bg-white p-4  rounded-lg shadow  border-gray-300"
         >
           <div className="mb-2">
             <span className="font-semibold text-gray-700">

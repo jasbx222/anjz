@@ -1,6 +1,6 @@
 import Pagination from "@/app/components/pageination/Pageination";
 import { ItemsTablePropsForPlan } from "@/app/models/types.";
-import { PenLine, Trash2, LockIcon } from "lucide-react";
+import { PenLine, Trash2, LockIcon, ArrowDownToDot, Eye } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -61,6 +61,18 @@ const TableMobile: React.FC<TableProps> = ({ filterPlan }) => {
                 تعديل
               </button>
             </Link>
+                 <Link href={`/planfeature/add/${plan.id}`}>
+                          <button className="flex items-center gap-1 text-sm bg-[#F83A26] text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition">
+                           <ArrowDownToDot/>
+                            اضافة خصائص
+                          </button>
+                        </Link>
+                        <Link href={`/planfeature/show/${plan.id}`}>
+                          <button className="flex items-center gap-1 text-sm bg-[#41BC4C] text-white px-3 py-1.5 rounded-full hover:bg-green-700 transition">
+                         <Eye/>
+                            مشاهده خصائص
+                          </button>
+                        </Link>
           </div>
         </div>
       ))}

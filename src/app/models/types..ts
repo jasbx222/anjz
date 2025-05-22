@@ -84,3 +84,7 @@ export interface AddParamType {
 
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+export interface PlanFetureShowType {
+id:any,
+title:string
+}

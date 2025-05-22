@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Cards from "./Cards";
 import users from "./../../../../public/icons/users.png";
 import selling from "./../../../../public/icons/seling.png";
@@ -8,6 +8,8 @@ import { StaticImageData } from "next/image";
 import { DataCards } from "@/app/models/types.";
 import useGetReport from "@/app/components/hooks/useGetReport";
 import { withAuth } from "@/app/components/withAuth";
+import { Table } from "./Table";
+import useGet from "@/app/components/hooks/useGet";
 
 const url = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -49,7 +51,7 @@ const Page: React.FC = () => {
         },
       ]
     : [];
-  console.log(dataCards);
+ 
   return (
     <div dir="rtl" className="container mx-auto w-full bg-white/90 p-4 rounded-xl shadow-lg">
       {loading ? (
@@ -69,6 +71,8 @@ const Page: React.FC = () => {
       ) : (
         <p className="text-center text-red-500">لا توجد بيانات متاحة.</p>
       )}
+
+      <Table/>
     </div>
   );
 };

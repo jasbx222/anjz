@@ -27,12 +27,7 @@ import { withAuth } from "@/app/components/withAuth";
 
     add(`${url}/faq`, formData,true);
 
-    Swal.fire
-    ({
-   title:`${response?.toString()}`,
- icon:'success',
-  timer: 2000    
-    })
+ 
   };
 
 
@@ -41,7 +36,9 @@ import { withAuth } from "@/app/components/withAuth";
       <h2 className="text-2xl font-bold text-right text-[#0177FB] mb-6">
         إضافة FAQ جديد
       </h2>
-
+<h2 className="text-red-500">
+  {response && response}
+</h2>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <Input

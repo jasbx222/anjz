@@ -40,7 +40,7 @@ const Page = () => {
           <div className="text-gray-500 text-sm">السعر </div>
           
           <div className="text-xl font-bold text-gray-800 flex justify-center items-center gap-2">
-         <Banknote className="w-5 h-5 text-green-500" />
+         <Banknote className="w-5 h-5 text-[#41BC4C]" />
             {data.price}
           </div>
         </div>

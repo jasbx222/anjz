@@ -5,16 +5,17 @@ import logo from "../../../../public/icons/logo.png";
 import Image from "next/image";
 import useLogin from "./useLogin";
 const Login = () => {
-  const [email,setEmail]=useState('')
-  const [password,setPass]=useState('')
-  const data={
-    email:email,
-    password:password
-  }
- const {login,response,loading}=useLogin()
+  const [email, setEmail] = useState("");
+  const [password, setPass] = useState("");
+  const data = {
+    email: email,
+    password: password,
+  };
+  const { login, response ,loading} = useLogin();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
- login(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,data)
+    
+    login(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, data);
   };
   return (
     <div className="container max-w-md mx-auto bg-white/90 rounded-3xl  h-[400px] shadow border-2 border-blue-200  p-6 mt-10">
@@ -26,13 +27,28 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-4 relative top-5"
       >
-        <Input onChange={(e:any)=>setEmail(e.target.value)} value={email}  label={"الايميل"} type={"email"} name={"email"} />
-        <Input onChange={(e:any)=>setPass(e.target.value)} value={password}  label={"الباسورد"} type={"password"} name={"password"} />
+        <Input
+          onChange={(e: any) => setEmail(e.target.value)}
+          value={email}
+          label={"الايميل"}
+          type={"email"}
+          name={"email"}
+        />
+        <Input
+          onChange={(e: any) => setPass(e.target.value)}
+          value={password}
+          label={"الباسورد"}
+          type={"password"}
+          name={"password"}
+        />
         <button
           type="submit"
           className="bg-[#0177FB] relative top-5 text-white py-2 rounded hover:bg-[#0176fb73] transition"
         >
-          تسجيل الدخول
+      
+      {
+        loading ?"انتضر دقيقة ":"    تسجيل الدخول"
+      }
         </button>
 
         <h2>{response && response}</h2>

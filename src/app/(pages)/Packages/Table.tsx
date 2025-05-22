@@ -8,7 +8,6 @@ import React from "react";
 
 interface TableProps {
   filterPlan: ItemsTablePropsForPlan[];
-
 }
 export const Table = ({ filterPlan }: TableProps) => {
   const searchParams = useSearchParams();
@@ -28,7 +27,10 @@ export const Table = ({ filterPlan }: TableProps) => {
     router.push(`?page=${page}`);
   };
   return (
-    <div dir="rtl" className="container hidden md:block w-full mx-auto px-4 py-12">
+    <div
+      dir="rtl"
+      className="container hidden md:block w-full mx-auto px-4 py-12"
+    >
       {currentItems.length <= 0 ? (
         <LoadingThreeDotsJumping />
       ) : (
@@ -63,6 +65,16 @@ export const Table = ({ filterPlan }: TableProps) => {
                         <Link href={`/Packages/show/${plan.id}`}>
                           <button className="bg-[#41BC4C] text-white px-4 py-2 rounded-lg whitespace-nowrap">
                             التفاصيل
+                          </button>
+                        </Link>
+                        <Link href={`/planfeature/add/${plan.id}`}>
+                          <button className="bg-[#F83A26] text-white px-4 py-2 rounded-lg whitespace-nowrap">
+                            اضافة خصائص
+                          </button>
+                        </Link>
+                        <Link href={`/planfeature/show/${plan.id}`}>
+                          <button className="bg-[#41BC4C] text-white px-4 py-2 rounded-lg whitespace-nowrap">
+                            مشاهده خصائص
                           </button>
                         </Link>
                       </div>

@@ -12,7 +12,8 @@ const Page = () => {
   const { data } = useGet<any>(`${url}/plan`);
 
 const filterPlan = data.filter((plan) => plan.title.toLowerCase().includes(query.toLowerCase()));
-  return (
+ 
+return (
     <div dir="rtl" className="container mx-auto px-4 py-8 flex flex-col justify-center items-center w-full gap-8">
       <div className="">
         <Add />
