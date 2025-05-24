@@ -4,6 +4,7 @@ import {
   House,
   ListOrdered,
   LogOut,
+  NotebookPen,
   Package,
   ShieldUser,
   Users,
@@ -17,6 +18,7 @@ export const mainLinks = [
   { label: "إدارة التقارير", icon: <ChartArea />, href: "/reports" },
   { label: "إدارة المستخدمين", icon: <Users />, href: "/users" },
   { label: " ادارة الموظفين", icon: <ShieldUser />, href: "/staff" },
+  { label: " ادارة الاشتراكات", icon: <NotebookPen />, href: "/subscription" },
 ];
 
 export const moreLinks = [

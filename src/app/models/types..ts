@@ -88,3 +88,62 @@ export interface PlanFetureShowType {
 id:any,
 title:string
 }
+
+
+export type AppSettings = {
+  id: number;
+  whatsApp: string;
+  facebook: string;
+  instagram: string;
+  main_app_version: string;
+  main_app_version_ios: string;
+  app_android_link: string;
+  app_android_direct_link: string;
+  app_ios_link: string;
+  policy_and_privacy: string;
+  communication_with_support: string;
+  ios_test: string;
+  created_at: string;
+  updated_at: string;
+  created_by: string | null;
+  updated_by: string | null;
+};
+
+ interface Features{
+    id:any;
+    title:string
+   }
+  interface PlanData{
+id:any;
+title:string;
+description:string;
+size:string;
+price:string;
+duration_days:string;
+dependents_count:string;
+features:Features[]
+  }
+export interface Plan {
+  id:any
+  plan:PlanData
+  
+}
+
+interface ClientPlan{
+ id:any;
+       name:string;
+        email:string;
+        job:null |string;
+        is_active: boolean
+}
+export interface PlanDetailes{
+  id:any;
+title:string;
+description:string;
+size:string;
+price:string;
+duration_days:string;
+dependents_count:string;
+features:Features[]
+client:ClientPlan
+}

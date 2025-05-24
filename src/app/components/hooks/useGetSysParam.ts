@@ -2,8 +2,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useGet = <T>(url: string) => {
-  const [data, setData] = useState<T[]>([]);
+const useGetSysParam = <T>(url: string) => {
+  const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(true);
 
 useEffect(() => {
@@ -29,4 +29,4 @@ fetchData()
 }, []);
   return { data, loading };
 };
-export default useGet
+export default useGetSysParam
