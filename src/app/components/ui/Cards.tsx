@@ -1,12 +1,7 @@
-import { StaticImageData } from "next/dist/shared/lib/get-img-props";
+
+import { CardsProps } from "@/app/models/types.";
 import "./Ui.css";
 import Image from "next/image";
-interface CardsProps {
-  title?: string;
-  description?: string;
-  icon?: StaticImageData;
-  href?: string;
-}
 
 export const CardHome = ({ title, description, icon, href }: CardsProps) => {
   return (

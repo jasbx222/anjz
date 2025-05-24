@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { CardHome } from "@/app/components/ui/Cards";
 import cart from "./../../../../public/icons/userIcons.png";
-import Package from "./../../../../public/icons/CART.png";
+import Package from "./../../../../public/icons/Vector.png";
 import order from "./../../../../public/icons/ORDER.png";
 import { Table } from "./Table";
 import { PlanChart } from "./Plan";
@@ -11,22 +11,22 @@ import { withAuth } from "@/app/components/withAuth";
 const dashboardItems = [
   {
     title: "إدارة المستخدمين",
-    description: "عرض وتعديل حالة الحسابات.",
+    description: "عرض وتعديل حالة المستخدمين.",
     icon: cart,
 
     href: "/users",
   },
   {
     title: "إدارة الباقات",
-    description: "تعديل التفاصيل ومراقبة الاشتراكات.",
+    description: "تعديل التفاصيل ومراقبة الباقات.",
     icon: order,
     href: "/Packages",
   },
   {
-    title: "إدارة الطلبات",
-    description: "عرض تفاصيل الطلبات والمستخدمين.",
+    title: "إدارة الاشتراكات",
+ description: "تعديل التفاصيل ومراقبة الاشتراكات.",
     icon: Package,
-    href: "/orders",
+    href: "/subscription",
   },
 ];
 

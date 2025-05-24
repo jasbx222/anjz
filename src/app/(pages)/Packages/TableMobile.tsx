@@ -9,7 +9,7 @@ interface TableProps {
   filterPlan: ItemsTablePropsForPlan[];
 }
 
-const TableMobile: React.FC<TableProps> = ({ filterPlan }) => {
+const TableMobile: React.FC<TableProps> = ({ filterPlan }:TableProps) => {
     
         const searchParams = useSearchParams();
       const router = useRouter();

@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-
+// هنا ناخذ البيج ك برور ونجيك اذا في توكن او لا 
 export function withAuth(Component: React.ComponentType<any>) {
   return function ProtectedComponent(props: any) {
     const router = useRouter();
@@ -17,7 +17,7 @@ export function withAuth(Component: React.ComponentType<any>) {
       }
     }, []);
 
-    if (isChecking) return null; // ممكن تحط spinner هنا
+    if (isChecking) return null; 
 
     return <Component {...props} />;
   };

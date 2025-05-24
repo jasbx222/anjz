@@ -39,6 +39,9 @@ export const Table = () => {
     
   return (
        <div className="  border border-[#0014463d] bg-[#D8E9F0] rounded-lg shadow p-4 overflow-x-auto">
+          <h1 className='text-right text-xl'>
+            العملاء
+            </h1>
           {
             currentItems.length<=0 ? (<LoadingThreeDotsJumping/>):(<table className="w-full text-sm text-left rtl:text-right text-gray-700">
             <thead className="text-xs text-gray-500 uppercase ">

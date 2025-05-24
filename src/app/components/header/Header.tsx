@@ -14,13 +14,13 @@ import Link from "next/link";
 import useGet from "../hooks/useGet";
 import { getToken } from "@/app/context/getToken";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export const Header = () => {
   const [down, setDown] = useState(false);
-  const { data = [] } = useGet<any>(`${process.env.NEXT_PUBLIC_BASE_URL}/ticket`);
+  const { data = [] } = useGet<any>(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/ticket`
+  );
   const token = getToken("token");
-  const router = useRouter();
 
   const logoutAction = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ export const Header = () => {
       });
 
       localStorage.removeItem("token");
-      window.location.href='/login'
+      window.location.href = "/login";
     } catch (error: any) {
       console.log("Logout error:", error.message);
     }
@@ -47,11 +47,8 @@ export const Header = () => {
 
   return (
     <header className="bg-gray-100 container rounded-2xl px-6 py-4 flex items-center justify-between">
-      {/* العنوان */}
-      {/* أدوات التحكم */}
       {token && (
         <div className="flex fixed top-5 left-4 items-center gap-4">
-          {/* المستخدم */}
           <div
             className="flex items-center gap-3 cursor-pointer select-none"
             onClick={() => setDown(!down)}
@@ -76,7 +73,6 @@ export const Header = () => {
             />
           </div>
 
-          {/* القائمة المنسدلة */}
           {down && (
             <div className="fixed top-14 z-50 left-0 bg-white shadow-lg rounded-lg w-52 animate-fade-in">
               <ul className="py-2">
@@ -96,13 +92,19 @@ export const Header = () => {
                   </Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 text-sm text-gray-700 cursor-pointer">
-                  <Link href="/systemparameters" className="flex gap-3 flex-row">
+                  <Link
+                    href="/systemparameters"
+                    className="flex gap-3 flex-row"
+                  >
                     <Settings size={15} className="text-green-600" />
                     الاعدادات
                   </Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 text-sm text-gray-700 cursor-pointer">
-                  <Link href="/addnotification/" className="flex gap-3 flex-row">
+                  <Link
+                    href="/addnotification/"
+                    className="flex gap-3 flex-row"
+                  >
                     <Bell size={15} className="text-green-600" />
                     اضافة اشعار
                   </Link>
@@ -115,7 +117,10 @@ export const Header = () => {
                 </li>
                 <li className="px-4 py-2 flex gap-3 flex-row hover:bg-gray-100 text-sm cursor-pointer">
                   <form onSubmit={logoutAction} className="w-full">
-                    <button type="submit" className="flex gap-3 flex-row w-full text-left">
+                    <button
+                      type="submit"
+                      className="flex gap-3 flex-row w-full text-left"
+                    >
                       <LogOut size={15} className="text-red-600" />
                       <span className="text-red-600">تسجيل الخروج</span>
                     </button>

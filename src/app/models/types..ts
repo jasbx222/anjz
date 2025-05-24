@@ -147,3 +147,10 @@ dependents_count:string;
 features:Features[]
 client:ClientPlan
 }
+
+ export interface CardsProps {
+  title?: string;
+  description?: string;
+  icon?: string;
+  href?: string;
+}
