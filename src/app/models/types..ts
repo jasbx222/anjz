@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 
 
 export interface Data {
@@ -48,7 +49,7 @@ interface Fetures{
   title:string
 }
 export interface PlanShowType{
-  id:number,
+  id:number | string,
    title: string,
     description: string,
     size:string,
@@ -70,14 +71,14 @@ export interface DataCards{
 
 
 export   interface Empolyes {
-  id:  any;
+  id:   string;
   email: string;
   is_active: boolean;
   roles: string[];
 }
 
 export interface AddParamType {
-  value: string | number;
+  value: string ;
   label:string;
   type:string;
 
@@ -85,13 +86,13 @@ export interface AddParamType {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export interface PlanFetureShowType {
-id:any,
+id: string,
 title:string
 }
 
 
 export type AppSettings = {
-  id: number;
+  id:  string;
   whatsApp: string;
   facebook: string;
   instagram: string;
@@ -110,11 +111,11 @@ export type AppSettings = {
 };
 
  interface Features{
-    id:any;
+    id:string;
     title:string
    }
   interface PlanData{
-id:any;
+id: string;
 title:string;
 description:string;
 size:string;
@@ -124,20 +125,20 @@ dependents_count:string;
 features:Features[]
   }
 export interface Plan {
-  id:any
+  id: string
   plan:PlanData
   
 }
 
 interface ClientPlan{
- id:any;
+ id:string;
        name:string;
         email:string;
         job:null |string;
         is_active: boolean
 }
 export interface PlanDetailes{
-  id:any;
+  id:string;
 title:string;
 description:string;
 size:string;
@@ -151,6 +152,6 @@ client:ClientPlan
  export interface CardsProps {
   title?: string;
   description?: string;
-  icon?: string;
+  icon?: StaticImageData;
   href?: string;
 }
