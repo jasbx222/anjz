@@ -155,3 +155,29 @@ client:ClientPlan
   icon?: StaticImageData;
   href?: string;
 }
+export type Feature = {
+  id: number;
+  title: string;
+};
+
+export type PlanResponse = {
+  plan_info: {
+    id: number;
+    title: string;
+    description: string;
+    size: string;
+    price: string;
+    duration_days: string;
+    dependents_count: string;
+    features: Feature[];
+  };
+  clients_count: number;
+  revenues_sum: number;
+};
+
+
+export interface ProfileTypes{
+  email:string;
+  roles:string[];
+  is_active:boolean
+}

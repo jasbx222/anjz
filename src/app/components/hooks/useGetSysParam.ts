@@ -15,11 +15,12 @@ const fetchData = async()=>{
    const res = await axios.get(url,{
     headers:{
       Authorization:`Bearer ${token}`,
+      
       Accept:'application/json; charset=UTF-8'
     }
    })
   if(res.status>=200){
-    setData(res.data.data)
+    setData(res.data)
   }
  } catch (error:any) {
   console.log(error.message)

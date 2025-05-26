@@ -11,7 +11,7 @@ const useUpdate = () => {
     setResponse(""); // reset previous response
     try {
       const token = localStorage.getItem("token");
-
+  if(!token)return null;
       const res = await axios.put(url, data, {
         headers: {
           Authorization: `Bearer ${token}`,

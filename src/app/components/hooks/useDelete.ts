@@ -11,7 +11,7 @@ const useDelete = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-
+  if(!token)return null;
       const res = await axios.delete(url, {
         headers: {
           Authorization: `Bearer ${token}`,

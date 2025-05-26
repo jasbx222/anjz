@@ -77,7 +77,7 @@ export const Table = () => {
                   colSpan={4}
                   className="text-center py-10 text-gray-500 text-xl"
                 >
-                  لا توجد نتائج حالياً.
+                جاري تحميل البيانات...
                 </td>
               </tr>
             ) : (

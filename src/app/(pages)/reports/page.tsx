@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Cards from "./Cards";
 import users from "./../../../../public/icons/users.png";
 import selling from "./../../../../public/icons/seling.png";
@@ -9,8 +9,6 @@ import { DataCards } from "@/app/models/types.";
 import useGetReport from "@/app/components/hooks/useGetReport";
 import { withAuth } from "@/app/components/withAuth";
 import { Table } from "./Table";
-import useGet from "@/app/components/hooks/useGet";
-
 const url = process.env.NEXT_PUBLIC_BASE_URL;
 
 export interface CardData {
@@ -28,26 +26,26 @@ const Page: React.FC = () => {
         {
           title: "العملاء",
           value: data.clients_count,
-          color: "bg-blue-500",
+          color: "bg-[#0177FB]",
           icon: users,
         },
         {
           title: "الإيرادات",
           value: data.revenues_sum,
-          color: "bg-red-500",
+          color: "bg-[#FF1752]",
           icon: rev,
         },
         {
-          title: "عدد المعالين",
+          title: "عدد المشتركين",
           value: data.dependents_count,
-          color: "bg-yellow-500",
+          color: "bg-[#FFB000]",
           icon: selling,
         },
         {
           title: "الوسائط",
           value: data.media_count,
-          color: "bg-green-500",
-          icon: selling, // يمكنك استبدالها بأيقونة مختلفة إن وجدت
+          color: "bg-[#4FCB5A]",
+          icon: selling,
         },
       ]
     : [];
@@ -55,7 +53,9 @@ const Page: React.FC = () => {
   return (
     <div dir="rtl" className="container mx-auto w-full bg-white/90 p-4 rounded-xl shadow-lg">
       {loading ? (
-        <p className="text-center text-gray-500">جارٍ التحميل...</p>
+  <p>
+  {""}
+  </p>
       ) : data ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {dataCards.map((card, index) => (

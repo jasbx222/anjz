@@ -1,5 +1,6 @@
 "use client";
 import Pagination from "@/app/components/pageination/Pageination";
+import CircleLoadier from "@/app/components/ui/CircleLoadier";
 import LoadingThreeDotsJumping from "@/app/components/ui/Loading";
 import { ItemsTablePropsForPlan } from "@/app/models/types.";
 import Link from "next/link";
@@ -32,8 +33,8 @@ export const Table = ({ filterPlan }: TableProps) => {
       className="container hidden md:block w-full mx-auto px-4 py-12"
     >
       {currentItems.length <= 0 ? (
-        <LoadingThreeDotsJumping />
-      ) : (
+
+<CircleLoadier/>) : (
         <div className="w-full overflow-x-auto">
           <table className=" w-full border border-gray-300 rounded-2xl shadow-lg">
             <thead className="bg-[#0177FB] h-[60px] text-white">

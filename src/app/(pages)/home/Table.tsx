@@ -1,6 +1,6 @@
 import useGet from '@/app/components/hooks/useGet';
 import Pagination from '@/app/components/pageination/Pageination';
-import LoadingThreeDotsJumping from '@/app/components/ui/Loading';
+import CircleLoadier from '@/app/components/ui/CircleLoadier';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 interface Items{
@@ -43,7 +43,7 @@ export const Table = () => {
             العملاء
             </h1>
           {
-            currentItems.length<=0 ? (<LoadingThreeDotsJumping/>):(<table className="w-full text-sm text-left rtl:text-right text-gray-700">
+            currentItems.length<=0 ? (<CircleLoadier/>):(<table className="w-full text-sm text-left rtl:text-right text-gray-700">
             <thead className="text-xs text-gray-500 uppercase ">
               <tr>
                 <th className="px-6 py-3"> اسم العميل</th>

@@ -1,4 +1,5 @@
 import Pagination from "@/app/components/pageination/Pageination";
+import CircleLoadier from "@/app/components/ui/CircleLoadier";
 import { ItemsTablePropsForPlan } from "@/app/models/types.";
 import { PenLine, Trash2, LockIcon, ArrowDownToDot, Eye } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +32,7 @@ const TableMobile: React.FC<TableProps> = ({ filterPlan }:TableProps) => {
   return (
     <div className="space-y-4 md:hidden">
         
-      {currentItems.map((plan, index) => (
+      { currentItems.length<=0 ? <CircleLoadier/>:currentItems.map((plan, index) => (
         <div
           key={index}
           className="bg-white p-4 rounded-lg shadow border border-gray-200"

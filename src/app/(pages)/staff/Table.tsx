@@ -9,6 +9,7 @@ import TableMobile from "./TableMobile";
 import Pagination from "@/app/components/pageination/Pageination";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Empolyes } from "@/app/models/types.";
+import CircleLoadier from "@/app/components/ui/CircleLoadier";
 
 export const Table = () => {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -118,9 +119,7 @@ export const Table = () => {
         </button>
       </div>
       {loading && (
-        <div className="text-lg text-gray-500 text-center">
-          جاري تحميل البيانات...
-        </div>
+        <CircleLoadier/>
       )}
 
       {!loading && (

@@ -1,11 +1,11 @@
-'use client'
-import { Plus, Search, X } from "lucide-react";
+"use client";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { Table } from "./Table";
 import { Suspense } from "react";
 import { withAuth } from "@/app/components/withAuth";
 
-  function Page() {
+function Page() {
   return (
     <div dir="rtl" className="relative mt-10 container w-[100%] px-4 lg:px-8">
       {/* Header & Search */}
@@ -17,10 +17,10 @@ import { withAuth } from "@/app/components/withAuth";
           </button>
         </Link>
       </div>
-  <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div></div>}>
         <Table />
-  </Suspense>
+      </Suspense>
     </div>
   );
 }
-export default withAuth(Page)
+export default withAuth(Page);

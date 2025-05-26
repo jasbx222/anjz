@@ -1,4 +1,5 @@
 import Pagination from "@/app/components/pageination/Pageination";
+import CircleLoadier from "@/app/components/ui/CircleLoadier";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -42,7 +43,7 @@ export const Table = ({ data, loading }: any) => {
                   colSpan={4}
                   className="text-center py-10 text-red-500 text-xl"
                 >
-                  جاري تحميل البيانات...
+               <CircleLoadier/>
                 </td>
               </tr>
             ) : data.length === 0 ? (

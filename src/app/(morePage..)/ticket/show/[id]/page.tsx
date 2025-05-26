@@ -3,14 +3,21 @@
 import usePutClosedMsg from "@/app/components/hooks/usePutClosedMsg";
 import useShow from "@/app/components/hooks/useShow";
 import { withAuth } from "@/app/components/withAuth";
-import { FolderClosed } from "lucide-react";
+import { ColumnsSettings, FolderClosed, ShieldClose } from "lucide-react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
-
+interface Sender {
+  name: string;
+  id: number;
+  email: string;
+  roles: string[];
+}
 interface Message {
   id: number;
   message: string;
+  sender: Sender;
+  media_url: string;
 }
-
 interface Client {
   id: number;
   name: string;
@@ -20,6 +27,8 @@ interface Ticket {
   id: number;
   status: string;
   client: Client;
+
+  sender: Sender;
   messages: Message[];
 }
 
@@ -63,6 +72,15 @@ const Page: React.FC = () => {
             : "اسم غير متوفر"}
         </p>
         <p>
+          <span className="font-semibold text-gray-700">اسم المرسل:</span>{" "}
+          {data?.messages?.map((i) => (
+            <span key={i.id} className="text-gray-600">
+              {i.sender?.name}
+            </span>
+          ))}
+        </p>
+
+        <p>
           <span className="font-semibold text-gray-700">الحالة:</span>
           <span
             className={`ml-2 px-3 py-1 rounded-full text-sm font-medium ${
@@ -76,12 +94,33 @@ const Page: React.FC = () => {
         </p>
       </div>
 
+      {/*  image  */}
+
+      <div className="flex items-center gap-2 mb-6">
+        <FolderClosed className="w-5 h-5 text-gray-500" />
+        <span className="text-gray-700">الملفات المرفقة:</span>
+        {data?.messages?.map((mg) =>
+          mg.media_url && mg.media_url !== "" ? (
+            <img
+              key={mg.id}
+              src={mg.media_url}
+              alt="ملف مرفق"
+              width={50}
+              height={50}
+              className="rounded-lg cursor-pointer hover:opacity-80 transition"
+              onClick={() => window.open(mg.media_url, "_blank")}
+              loading="lazy"
+            />
+          ) : null
+        )}
+      </div>
+
       <div className="bg-gray-50 p-4 rounded-xl mb-8 max-h-96 overflow-y-auto border border-gray-200">
         <h2 className="font-bold mb-4 text-gray-700 text-right">الرسائل:</h2>
         {Array.isArray(data?.messages) && data.messages.length > 0 ? (
           data.messages.map((msg: Message) => (
             <div key={msg.id} className={`mb-4 p-3 rounded-lg `}>
-              <p className="text-gray-800">{msg?.message ?? "null"}</p>
+              <p className="text-green-800">{msg?.message ?? "null"}</p>
             </div>
           ))
         ) : (
@@ -93,8 +132,8 @@ const Page: React.FC = () => {
         onClick={handleClosed}
         className="flex items-center gap-1 text-sm bg-green-500 text-white px-4 py-1.5 rounded-full hover:bg-red-600 transition"
       >
-        <FolderClosed className="w-4 h-4" />
-        اغلاق
+        <ShieldClose className="w-4 h-4" />
+        <span>إغلاق التذكرة</span>
       </button>
 
       {response && (
@@ -106,4 +145,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default withAuth(Page)
+export default withAuth(Page);

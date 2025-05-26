@@ -34,7 +34,7 @@ export const PlanChart= () => {
   }));
 
   return (
-    <div className="border border-[#0014463d] bg-[#D8E9F0] rounded-lg shadow p-4">
+    <div className="border -z-10 border-[#0014463d] bg-[#D8E9F0] rounded-lg shadow p-4">
       <h2 className="text-lg font-bold mb-4 text-gray-700">عدد المشتركين لكل باقة</h2>
       <ResponsiveContainer width="100%" height={350}>
         <BarChart

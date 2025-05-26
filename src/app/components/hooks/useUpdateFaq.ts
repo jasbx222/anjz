@@ -8,7 +8,7 @@ export default function useUpdateFaq() {
   const update = async (url: string, data: any, isFormData = false) => {
     try {
       const token = localStorage.getItem("token");
-
+  if(!token)return null;
       setLoading(true);
 
       const headers = {

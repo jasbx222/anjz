@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function useShow<T>(url: string, id: any ) {
+export default function useGetProfile<T>(url: string ) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -9,9 +9,9 @@ export default function useShow<T>(url: string, id: any ) {
     const fetchData = async () => {
       try {
           const token = localStorage.getItem('token');
-            if(!token)return null;
+          if(!token)return null;
         setLoading(true);
-        const res = await axios.get(`${url}/${id}`,{
+        const res = await axios.get(`${url}`,{
                headers:{
       Authorization:`Bearer ${token}`,
       Accept:'application/json; charset=UTF-8'
@@ -26,8 +26,8 @@ export default function useShow<T>(url: string, id: any ) {
       }
     };
 
-    if (id) fetchData();
-  }, [url, id]);
+    fetchData();
+  }, [url]);
 
   return { data, loading };
 }

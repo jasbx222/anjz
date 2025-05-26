@@ -11,7 +11,7 @@ const usePutClosedMsg = () => {
     setResponse(""); 
     try {
       const token = localStorage.getItem("token");
-
+  if(!token)return null;
       const res = await axios.put(
         url,
         {},
