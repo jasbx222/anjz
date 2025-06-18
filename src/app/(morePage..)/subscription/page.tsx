@@ -32,7 +32,7 @@ function Page() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-100 text-sm">
-            {data?.map((item: Plan, index: number) => (
+            {data?.map((item, index: number) => (
               <tr key={item.id} className="hover:bg-gray-50 transition-all">
                 <td className="px-4 py-3 text-[#F83A26] font-medium">
                   {index + 1}
@@ -44,7 +44,7 @@ function Page() {
                 <td className="px-4 py-3">{item.plan.duration_days}</td>
                 <td className="px-4 py-3">{item.plan.dependents_count}</td>
                 <td className="px-4 py-3 text-gray-600">
-                  {item.plan.features.map((i) => i.title).join(" ,")}
+                  {item?.plan?.features?.map((i) => i.title||"null").join(" ,")}
                 </td>
                 <td className="px-4 py-3 space-x-2 space-x-reverse flex items-center justify-center gap-2">
                 <Link href={`/subscription/show/${item.id}/`}>

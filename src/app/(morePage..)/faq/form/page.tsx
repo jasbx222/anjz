@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { withAuth } from "@/app/components/withAuth";
+import { toast } from "react-toastify";
 
  function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -15,7 +16,7 @@ import { withAuth } from "@/app/components/withAuth";
   const [description, setDesc] = useState<string>("");
   const [media, setImage] = useState<File | null>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit =async (e: FormEvent) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -25,8 +26,8 @@ import { withAuth } from "@/app/components/withAuth";
       formData.append("media", media);
     }
 
-    add(`${url}/faq`, formData,true);
-
+  await   add(`${url}/faq`, formData,true);
+   toast('تمت العملية بنجاح');
  
   };
 

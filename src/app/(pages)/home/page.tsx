@@ -2,25 +2,26 @@
 
 import Link from "next/link";
 import { CardHome } from "@/app/components/ui/Cards";
-import cart from "./../../../../public/icons/userIcons.png";
+import coupon from "./../../../../public/icons/Discount.png";
 import Package from "./../../../../public/icons/Vector.png";
 import order from "./../../../../public/icons/ORDER.png";
 import { Table } from "./Table";
 import { PlanChart } from "./Plan";
 import { withAuth } from "@/app/components/withAuth";
+import { getDecryptedToken } from "@/app/components/hooks/useDelete";
 const dashboardItems = [
   {
-    title: "إدارة المستخدمين",
-    description: "عرض وتعديل حالة المستخدمين.",
-    icon: cart,
+    title: "إدارة الخصومات",
+    description: "عرض اضافة الخصومات .",
+    icon: coupon,
 
-    href: "/users",
+    href: "/coupon",
   },
   {
-    title: "إدارة الباقات",
-    description: "تعديل التفاصيل ومراقبة الباقات.",
+    title: "إدارة الدفعات",
+    description: " التفاصيل ومراقبة الدفعات.",
     icon: order,
-    href: "/Packages",
+    href: "/payment",
   },
   {
     title: "إدارة الاشتراكات",
@@ -31,8 +32,8 @@ const dashboardItems = [
 ];
 
  function Page() {
-
-
+const token =getDecryptedToken()
+console.log(token)
   return (
     <div dir="rtl" className="p-6 space-y-6">
       <div className="grid container W-[100%] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

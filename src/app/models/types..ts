@@ -1,6 +1,7 @@
 import { StaticImageData } from "next/image";
+import { number } from "zod/v4";
 
-
+export const url =process.env.NEXT_PUBLIC_BASE_URL;
 export interface Data {
   name: string | null;
   created: Date | null | undefined | string;
@@ -143,6 +144,11 @@ title:string;
 description:string;
 size:string;
 price:string;
+status:string;
+old_plan:{
+  id:number;
+  title:string
+}
 duration_days:string;
 dependents_count:string;
 features:Features[]
@@ -181,3 +187,96 @@ export interface ProfileTypes{
   roles:string[];
   is_active:boolean
 }
+
+type ClientPayment = {
+  id: number;
+  name: string;
+  email: string;
+  job: string | null;
+  is_active: boolean;
+  created: string;
+};
+
+type PlanPayment = {
+  title: string;
+};
+
+type SubscriptionPayment = {
+  status: string;
+  type: string;
+  plan: PlanPayment;
+  amount_paid: string;
+  plan_price: string;
+  storage_limit: string;
+  max_users: string;
+  start_date: string;
+  end_date: string;
+};
+
+type CouponPayment = {
+  code: string;
+  value: string;
+};
+
+type MetaDataDetails = {
+  rrn: string;
+  authId: string;
+  maskedPan: string;
+  paymentSystem: string;
+};
+
+type MetaData = {
+  currency: string;
+  amount: number;
+  paymentType: string;
+  creationDate: string;
+  details: MetaDataDetails;
+};
+
+export type PaymentData = {
+  id: number;
+  client: ClientPayment;
+  subscription: SubscriptionPayment;
+  coupon: CouponPayment;
+  amount_paid: string;
+  payment_id: string;
+  request_id: string;
+  status: string;
+  meta_data: MetaData;
+};
+
+ export interface PaymentGetAll{
+    id:number;
+    client:{
+        name:string;
+      
+    };
+    subscription:{
+        type:string;
+         plan:{
+        title:string
+    }
+    };
+   
+    
+  }
+
+
+ export interface Coupon{
+        id:number;
+        code:string;
+        value:string;
+        total_used:string;
+  }
+
+  
+export type CouponShow= {
+  id: number;
+  code: string;
+  value: string;
+  max_usage_count: string;
+  started_at: string;
+  expired_at: string;
+  created: string;
+  total_used: number;
+};

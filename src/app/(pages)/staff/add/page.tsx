@@ -4,6 +4,7 @@ import Input from "./Inputs";
 import { FormEvent, useState } from "react";
 
 import { withAuth } from "@/app/components/withAuth";
+import { toast } from "react-toastify";
 
  function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -33,7 +34,7 @@ import { withAuth } from "@/app/components/withAuth";
     );
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit =async (e: FormEvent) => {
     e.preventDefault();
 
     const rolesPayload: Record<string, string> = {};
@@ -46,8 +47,8 @@ import { withAuth } from "@/app/components/withAuth";
       ...rolesPayload,
     };
 
-    add(`${url}/employee`, data, true);
-
+   await add(`${url}/employee`, data, true);
+   toast('تمت العملية بنجاح');
   };
 
   return (

@@ -41,14 +41,14 @@ export const SearchPlan =({
   value
 }:SerachPlan)=>{
   return (
-      <div  className="flex items-center gap-5 w-full">
+      <div  className="flex items-center  container w-full md:w-[50%] gap-5 ">
         <label htmlFor=""><Search/>  </label>
           <input
           value={value}
             type="search"
             onChange={onChange}
             placeholder="البحث عن باقة"
-            className="border  border-gray-300 rounded-lg px-4 py-2 w-full"
+            className="border  border-gray-300  rounded-lg px-4 py-2 w-full"
           />
         </div>
   )

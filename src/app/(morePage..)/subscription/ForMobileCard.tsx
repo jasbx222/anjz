@@ -39,7 +39,7 @@ export function ForMobile() {
               </div>
               <div className="col-span-2">
                 <span className="font-semibold text-gray-800">الميزات:</span>{" "}
-                {item.plan.features.map((f) => f.title).join("، ")}
+                {item.plan.features?.map((f) => f.title || "null").join("، ")}
               </div>
             </div>
 

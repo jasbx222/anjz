@@ -6,6 +6,7 @@ import { redirect, useParams } from "next/navigation";
 import Link from "next/link";
 import useUpdateFaq from "@/app/components/hooks/useUpdateFaq";
 import { withAuth } from "@/app/components/withAuth";
+import { toast } from "react-toastify";
 
  function Page() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -15,7 +16,7 @@ const {id}=useParams();
   const [description, setDesc] = useState<string>("");
   const [media, setImage] = useState<File | null>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -25,8 +26,8 @@ const {id}=useParams();
       formData.append("media", media);
     }
 
-    update(`${url}/faq/${id}`, formData,true);
-
+   await update(`${url}/faq/${id}`, formData,true);
+   toast('تمت العملية بنجاح');
 
   };
 

@@ -3,6 +3,7 @@
 import usePost from "@/app/components/hooks/usePost";
 import { withAuth } from "@/app/components/withAuth";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [title, setTitle] = useState("");
@@ -17,7 +18,8 @@ const Page = () => {
  }
   const handleSubmit = async (e: React.FormEvent) => {
    e.preventDefault();
-   add(`${url}/notification`,data,false)
+   await add(`${url}/notification`,data,false)
+    toast('تمت العملية بنجاح');
   }
 
   return (
@@ -63,9 +65,7 @@ const Page = () => {
           {loading ? "جاري الإرسال..." : "إرسال الإشعار"}
         </button>
 
-        {response && (
-          <p className="text-green-600 text-center font-medium mt-3">{response}</p>
-        )}
+       
       </form>
     </div>
   );

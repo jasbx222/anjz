@@ -7,6 +7,8 @@ import { CircleAlert } from "lucide-react";
 import { useState } from "react";
 import usePost from "@/app/components/hooks/usePost";
 import useUpdate from "@/app/components/hooks/useUpdate";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const url =process.env.NEXT_PUBLIC_BASE_URL
 function Page() {
@@ -20,13 +22,40 @@ function Page() {
     password: password,
     
   }
+  const translateRole = (role: string): string => {
+  switch (role) {
+    case "plan_management":
+      return "إدارة الباقات";
+    case "ticket_management":
+      return "إدارة التذاكر";
+    case "client_management":
+      return "إدارة العملاء";
+    case "employee_management":
+      return "إدارة الموظفين";
+    case "notification_management":
+      return "إدارة الإشعارات";
+    case "subscription_management":
+      return "إدارة الاشتراكات";
+    case "system_parameter_management":
+      return "إعدادات النظام";
+    case "report_management":
+      return "إدارة التقارير";
+    case "faq_management":
+      return "إدارة الاسئلة الشائعة";
+    default:
+      return role;
+  }
+};
+const route = useRouter();
   const { update,response } = useUpdate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    update(`${url}/profile`, dataProfile);
+    await update(`${url}/profile`, dataProfile);
     setEmail("");
     setPassword("");
-    window.location.href = "/login";
+       toast('تمت العملية بنجاح');
+    // window.location.href = "/login";
+    // route.refresh()
   };
   const [show, setShow] = useState<boolean>(false);
   return (
@@ -54,11 +83,16 @@ function Page() {
             </h2>
             <p className="text-gray-500">{data?.email}</p>
             الصلاحيات
-            <ul>
-              {data?.roles.map((role) => (
-                <li className="border-b border-blue-300 shadow-md" key={role}>{role}</li>
-              ))}
-            </ul>
+            <div className="flex flex-wrap gap-2 justify-end">
+            {data?.roles.map((role, idx) => (
+              <span
+                key={idx}
+                className="bg-[#0177FB]/10 text-[#0177FB] px-3 py-1 rounded-full text-sm font-medium border border-[#0177FB]/20"
+              >
+                {translateRole(role)}
+              </span>
+            ))}
+          </div>
           </div>
         )}
 

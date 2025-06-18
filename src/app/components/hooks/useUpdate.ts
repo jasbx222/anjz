@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useCallback, useState } from "react";
+import { getDecryptedToken } from "./useDelete";
 
 const useUpdate = () => {
   const [response, setResponse] = useState<string>("");
@@ -10,8 +11,8 @@ const useUpdate = () => {
     setLoad(true);
     setResponse(""); // reset previous response
     try {
-      const token = localStorage.getItem("token");
-  if(!token)return null;
+      const token =getDecryptedToken()
+        if(!token)return null;
       const res = await axios.put(url, data, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -24,6 +25,7 @@ const useUpdate = () => {
       } else {
         setResponse("حدث خطأ أثناء التعديل");
       }
+       setLoad(false);
     } catch (error: any) {
       console.error("Post error:", error);
       setResponse("تاكد من الاتصال بالانرنت او البيانات بالفعل مستخدمة");

@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useCallback, useState } from "react";
+import { getDecryptedToken } from "./useDelete";
 
 const usePutClosedMsg = () => {
   const [response, setResponse] = useState("");
@@ -10,7 +11,7 @@ const usePutClosedMsg = () => {
     setLoad(true);
     setResponse(""); 
     try {
-      const token = localStorage.getItem("token");
+      const token =getDecryptedToken()
   if(!token)return null;
       const res = await axios.put(
         url,
@@ -30,7 +31,7 @@ const usePutClosedMsg = () => {
       }
     } catch (error: any) {
       console.error("Put error:", error);
-      setResponse("تأكد من الاتصال بالإنترنت أو أن البيانات مستخدمة بالفعل");
+      setResponse(" حصلت مشكلة لايمكن تنفيذ هذا الامر  ");
     } finally {
       setLoad(false);
     }

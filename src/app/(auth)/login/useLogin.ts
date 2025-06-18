@@ -1,25 +1,35 @@
 "use client";
-import axios from "axios";
-import { useRouter } from "next/navigation";
+
 import { useState } from "react";
+import axios from "axios";
+import CryptoJS from "crypto-js";
+
+const SECRET_KEY =process.env.NEXT_PUBLIC_SECRET_KEY_TOKEN;
 
 export default function useLogin() {
   const [response, setResponse] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
   const login = async (url: string, data: any) => {
     try {
       setLoading(true);
       const res = await axios.post(url, data);
-      const token = res.data?.token;
+      const token = res?.data?.token;
 
-      if (token) {
-        localStorage.setItem("token", token);
+      if (token && typeof token === "string") {
+        const encryptedToken = CryptoJS.AES.encrypt(token, SECRET_KEY).toString();
+        localStorage.setItem("token", encryptedToken);
         window.location.href = "/home";
+      } else {
+        console.error("التوكن غير صالح:", token);
+        setResponse("حدث خطأ: التوكن غير صالح");
       }
+
       setLoading(false);
     } catch (error: any) {
-      console.error(" فشل الإرسال:", error);
-      setResponse(" 🥺 حدث خطأ أثناء الإرسال");
+      console.error("فشل الإرسال:", error);
+      setResponse("🥺 حدث خطأ أثناء الإرسال");
+      setLoading(false);
     }
   };
 

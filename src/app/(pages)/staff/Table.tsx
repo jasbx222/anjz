@@ -3,23 +3,25 @@
 import { PenLine, Trash2, RefreshCw, LockIcon, Eye } from "lucide-react";
 import React, { useState } from "react";
 import useGet from "@/app/components/hooks/useGet";
-import useDelete from "@/app/components/hooks/useDelete";
+import useDelete, { getDecryptedToken } from "@/app/components/hooks/useDelete";
 import Link from "next/link";
 import TableMobile from "./TableMobile";
 import Pagination from "@/app/components/pageination/Pageination";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Empolyes } from "@/app/models/types.";
 import CircleLoadier from "@/app/components/ui/CircleLoadier";
+import { toast } from "react-toastify";
 
 export const Table = () => {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { data, loading } = useGet<Empolyes>(`${url}/employee`);
   const [search, setSearch] = useState("");
   const [msg, setMsg] = useState("");
+  const [msgStatus, setMsgStatus] = useState("");
   const [statusFilter, setStatusFilter] = useState<
     "all" | "active" | "deactive"
   >("all");
-
+// const route = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
   const itemsPerPage = 8;
@@ -65,17 +67,26 @@ export const Table = () => {
 
   const handleToggleStatus = async (id: string) => {
     try {
-      const token = localStorage.getItem("token");
+      const token =getDecryptedToken()
       if (!token) return;
    
       setToggleLoading(id);
-      await fetch(`${url}/employee/${id}/toggle-active`, {
+      const res= await fetch(`${url}/employee/${id}/toggle-active`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json; charset=UTF-8",
         },
       });
+   if (res.ok) {
+    toast('تمت العملية بنجاح');
+    setInterval(()=>{
+         location.href='/staff'
+    },5000)
+
+  } else {
+    toast.error('فشل في تنفيذ العملية');
+  }
     } catch (error) {
       console.error("فشل التبديل:", error);
     } finally {

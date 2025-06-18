@@ -7,6 +7,7 @@ import useGetSysParam from '@/app/components/hooks/useGetSysParam';
 import { withAuth } from '@/app/components/withAuth';
 import { useParams } from 'next/navigation';
 import { AppSettings } from '@/app/models/types.';
+import { toast } from 'react-toastify';
 
 const fields = [
   { name: 'communication_with_support', label: 'الايميل للتواصل مع الدعم الفني', type: 'email' },
@@ -25,7 +26,7 @@ const fields = [
 const Page = () => {
   const { id } = useParams();
   const { update, response } = useUpdate();
-  const { data } = useGetSysParam<AppSettings>(
+  const { data,loading } = useGetSysParam<AppSettings>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/system-parameter`
   );
 
@@ -45,9 +46,10 @@ const Page = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit =async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    update(`${process.env.NEXT_PUBLIC_BASE_URL}/system-parameter/${id}`, formData);
+   await update(`${process.env.NEXT_PUBLIC_BASE_URL}/system-parameter/${id}`, formData);
+      toast('تمت العملية بنجاح');
   };
 
   return (
@@ -69,7 +71,9 @@ const Page = () => {
           type="submit"
           className="w-full bg-blue-800 text-white py-3 rounded-md"
         >
-          إرسال
+        {
+          loading ?"جاري الارسال" :"  إرسال"
+        }
         </button>
       </form>
     </div>

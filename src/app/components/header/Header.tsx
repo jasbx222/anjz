@@ -17,6 +17,7 @@ import { getToken } from "@/app/context/getToken";
 import axios from "axios";
 import { ProfileTypes } from "@/app/models/types.";
 import useGetProfile from "../hooks/useGetProfile";
+import { getDecryptedToken } from "../hooks/useDelete";
 
 export const Header = () => {
   const [down, setDown] = useState(false);
@@ -26,7 +27,7 @@ export const Header = () => {
   const { data: profile } = useGetProfile<ProfileTypes>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/profile`
   );
-  const token = getToken("token");
+  const token =getDecryptedToken()
 
   const logoutAction = async (e: FormEvent) => {
     e.preventDefault();
@@ -44,13 +45,14 @@ export const Header = () => {
         },
       });
 
-      localStorage.removeItem("token");
+      localStorage.removeItem("token")
+      
       window.location.href = "/login";
     } catch (error: any) {
       console.log("Logout error:", error.message);
     }
   };
-  if (!token) return null;
+  if (!token) return '';
   return (
     <header className="bg-gray-100 container z-50 rounded-2xl px-6 py-4 flex items-center justify-between">
       <div className="flex fixed top-5 left-4 items-center gap-4">

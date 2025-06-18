@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import { getDecryptedToken } from "./useDelete";
 
 export default function usePost() {
   const [response, setResponse] = useState<any>(null);
@@ -8,7 +9,7 @@ export default function usePost() {
 
   const add = async (url: string, data: any, isFormData = false) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getDecryptedToken()
 
       setLoading(true);
 

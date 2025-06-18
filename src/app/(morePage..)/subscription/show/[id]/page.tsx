@@ -6,6 +6,7 @@ import useShow from "@/app/components/hooks/useShow";
 import useUpdate from "@/app/components/hooks/useUpdate";
 import usePutClosedMsg from "@/app/components/hooks/usePutClosedMsg";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 function Page() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ function Page() {
   }
 
   const handleSubsend = () => {
-    update(`${process.env.NEXT_PUBLIC_BASE_URL}/subscription/${id}/suspend`);
+    update(`${process.env.NEXT_PUBLIC_BASE_URL}/subscription/${id}/toggle-active`);
  
   };
   return (
@@ -28,13 +29,18 @@ function Page() {
       <h1 className="text-2xl font-bold text-[#0177FB] mb-6">
         تفاصيل الخطة: {data?.title}
       </h1>
-<h1 className="text-right text-xl text-green-600"> {response && response}</h1>
+<h1 className="text-right text-xl "> {response && response}</h1>
    
       <div className="bg-white rounded-2xl shadow border border-gray-200 p-6 space-y-4">
         <div className="text-sm text-gray-700">
           <span className="font-bold text-gray-800">الوصف: </span>
           {data?.description}
         </div>
+     <Link href={`/Packages/show/${data?.old_plan?.id}`}>
+        <div className="text-sm text-gray-700">
+          <span className="font-bold text-gray-800">الخطة السابقة: </span>
+          {data?.old_plan?.title}
+        </div></Link>
 
         <div className="grid grid-cols-2 gap-4 text-sm text-gray-700">
           <div>
@@ -66,9 +72,13 @@ function Page() {
         <div className="pt-4 flex justify-end gap-2">
           <button
             onClick={handleSubsend}
-            className="bg-[#F83A26] hover:bg-[#d1311f4b]  hover:text-gray-600 text-white text-xs px-4 py-2 rounded-full transition-all"
+            className={
+`${data.status=="active" ? "bg-green-400" :"bg-red-500"} hover:bg-[#d1311f4b]  hover:text-gray-600 text-white text-xs px-4 py-2 rounded-full transition-all`
+            }
           >
-          اعادة ارسال
+      {
+        data?.status ==="active" ? "اغلاق": "تنشيط"
+      }
           </button>
         </div>
       </div>

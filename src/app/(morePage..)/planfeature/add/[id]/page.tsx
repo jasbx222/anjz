@@ -4,13 +4,14 @@ import usePost from "@/app/components/hooks/usePost";
 import { withAuth } from "@/app/components/withAuth";
 import { Input } from "@/app/(pages)/Packages/form/Inputs";
 import { useParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [title, setTitle] = useState<string>("");
   const { id } = useParams();
   const url = process.env.NEXT_PUBLIC_BASE_URL;
   const { add, response } = usePost();
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit =async (e: FormEvent) => {
     e.preventDefault();
 
     const data = {
@@ -18,7 +19,8 @@ const Page = () => {
       plan_id: id,
     };
 
-    add(`${url}/plan-feature`, data, false);
+ await   add(`${url}/plan-feature`, data, false);
+    toast('تمت العملية بنجاح');
   };
 
   return (
