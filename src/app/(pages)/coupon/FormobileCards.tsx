@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Coupon } from '@/app/models/types.';
+import { Coupon, url } from '@/app/models/types.';
+import FormCoupon from './add_new/FormCoupon';
+import useGet from '@/app/components/hooks/useGet';
 
 interface Props {
   currentItems: Coupon[];
 }
 
 const ForMobileCards: React.FC<Props> = ({ currentItems }) => {
+    const [add, setAdd] = useState<boolean>(false);
+     const { data,refetch } = useGet<Coupon>(`${url}/coupon`);
   return (
     <div className="grid gap-4  md:hidden">
+       <button
+          onClick={() => setAdd(!add)}
+          className="bg-[#233dcf] w-[40%] mb-5 text-white px-4 py-2 rounded-lg"
+        >
+          اضافة الكوبون
+        </button>
+  {add && <FormCoupon refetch={refetch} setAdd={setAdd} add={add} />}
+
       {currentItems.map((coupon, index) => (
         <div
           key={index}

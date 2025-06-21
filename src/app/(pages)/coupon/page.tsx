@@ -41,19 +41,22 @@ const Page = () => {
 
   return (
     <div>
-      <SearchInput placeholder="ابحث عن طريق رقم الكود" onChange={(e) => setQuery(e.target.value)} value={query} />
-      {add && <FormCoupon refetch={refetch} setAdd={setAdd} add={add} />}
-
+   
       <div
         dir="rtl"
-        className={`container hidden md:block w-full mx-auto px-4 py-12 ${add ? "blur-2xl" : ""}`}
+        className={`container hidden md:block w-full mx-auto px-4 py-12`}
       >
+       <div className="grid grid-cols-1 gap-5">
+            <SearchInput placeholder="ابحث عن طريق رقم الكود" onChange={(e) => setQuery(e.target.value)} value={query} />
+    
         <button
           onClick={() => setAdd(!add)}
-          className="bg-[#41BC4C] mb-5 text-white px-4 py-2 rounded-lg"
+          className="bg-[#41BC4C] mb-5 w-[20%] text-white px-4 py-2 rounded-lg"
         >
           اضافة الكوبون
         </button>
+        </div>
+  {add && <FormCoupon refetch={refetch} setAdd={setAdd} add={add} />}
 
         {currentItems.length === 0 ? (
           <p className="text-center">لا توجد نتائج</p>

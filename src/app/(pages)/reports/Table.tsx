@@ -40,7 +40,7 @@ export const Table = () => {
       className="container  w-full mx-auto px-4 py-12"
     >
       <SearchInput
-      placeholder=""
+      placeholder="ابحث عن باقة"
         onChange={(e: any) => setQuery(e.target.value)}
         value={query}
       />
