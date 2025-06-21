@@ -25,6 +25,7 @@ export interface FilteredEmployees {
 
 export interface SerachPlan {
   value: string | number;
+  placeholder:string;
 
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -71,13 +72,16 @@ export interface DataCards{
 }
 
 
-export   interface Empolyes {
+   interface EmpolyesFor {
   id:   string;
   email: string;
   is_active: boolean;
   roles: string[];
 }
-
+export interface EmpolyesData {
+  data: EmpolyesFor[];
+  refetch:()=>void
+}
 export interface AddParamType {
   value: string ;
   label:string;
@@ -267,6 +271,7 @@ export type PaymentData = {
         code:string;
         value:string;
         total_used:string;
+     
   }
 
   

@@ -5,7 +5,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import { Header } from "./components/header/Header";
 import { ToastContainer } from "react-toastify";
 
-
+// import { AddProvider } from "./context/useRefetch";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -50,8 +50,10 @@ export default function RootLayout({
           <Header />
           
           <main className="mt-4">
-   
-      {children}
+   {/* <AddProvider> */}
+  {children}
+   {/* </AddProvider> */}
+    
           <ToastContainer />
          
             </main>

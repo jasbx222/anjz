@@ -8,13 +8,13 @@ import Link from "next/link";
 import TableMobile from "./TableMobile";
 import Pagination from "@/app/components/pageination/Pageination";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { Empolyes } from "@/app/models/types.";
+import { EmpolyesData } from "@/app/models/types.";
 import CircleLoadier from "@/app/components/ui/CircleLoadier";
 import { toast } from "react-toastify";
 
-export const Table = () => {
+export const Table = ({data,refetch}:EmpolyesData) => {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
-  const { data, loading } = useGet<Empolyes>(`${url}/employee`);
+  // const { data, loading,refetch } = useGet<Empolyes>(`${url}/employee`);
   const [search, setSearch] = useState("");
   const [msg, setMsg] = useState("");
   const [msgStatus, setMsgStatus] = useState("");
@@ -56,13 +56,15 @@ export const Table = () => {
   const { remove, response } = useDelete();
   const [toggleLoading, setToggleLoading] = useState<string | null>(null);
 
-  const handleDelete = (id: string) => {
+  const handleDelete =async (id: string) => {
        if(!id){
         setMsg('هذا المستخدم تم حذفة')
       }
 
     const deleteUrl = `${url}/employee/${id}`;
-    remove(deleteUrl);
+    await remove(deleteUrl);
+        toast.success('تمت العملية بنجاح');
+   refetch()
   };
 
   const handleToggleStatus = async (id: string) => {
@@ -79,10 +81,9 @@ export const Table = () => {
         },
       });
    if (res.ok) {
-    toast('تمت العملية بنجاح');
-    setInterval(()=>{
-         location.href='/staff'
-    },5000)
+
+    toast.success('تمت العملية بنجاح');
+   refetch()
 
   } else {
     toast.error('فشل في تنفيذ العملية');
@@ -129,15 +130,12 @@ export const Table = () => {
           غير النشطين
         </button>
       </div>
-      {loading && (
+      {/* {loading && (
         <CircleLoadier/>
-      )}
+      )} */}
 
-      {!loading && (
-        <>
-          {currentItems.length === 0 ? (
-            <div className="text-center text-gray-600">لا توجد نتائج.</div>
-          ) : (
+     
+        
             <div className="overflow-x-auto">
               {/* Desktop View */}
               <table className="min-w-full hidden md:table bg-white border border-[#C9D3DF] rounded-lg shadow-sm">
@@ -220,16 +218,6 @@ export const Table = () => {
                 toggleLoading={toggleLoading}
               />
             </div>
-          )}
-
-          {response && (
-            <div className="mt-4 text-green-600 text-center font-medium">
-              {response}
-            </div>
-          )}
-        </>
-      )}
-
       {currentItems.length > 0 && (
         <Pagination
           goToPage={goToPage}

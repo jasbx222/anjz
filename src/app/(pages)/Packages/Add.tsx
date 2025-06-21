@@ -14,31 +14,16 @@ export const Add = () => {
             </button>
           </Link>
         </div>
-
-        {/* البحث */}
-      
-
-        {/* التصفية */}
-        {/* <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
-          <select className="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-auto">
-            <option value="">تصفية حسب</option>
-            <option value="active">نشط</option>
-            <option value="inactive">غير نشط</option>
-            <option value="all">الكل</option>
-          </select>
-          <button className="bg-[#0177FB] text-white px-4 py-2 rounded-lg w-full sm:w-auto">
-            تصفية
-          </button>
-        </div> */}
       </div>
     </div>
   );
 };
 
 
-export const SearchPlan =({
+export const SearchInput =({
   onChange,
-  value
+  value,
+  placeholder
 }:SerachPlan)=>{
   return (
       <div  className="flex items-center  container w-full md:w-[50%] gap-5 ">
@@ -47,7 +32,7 @@ export const SearchPlan =({
           value={value}
             type="search"
             onChange={onChange}
-            placeholder="البحث عن باقة"
+            placeholder={placeholder}
             className="border  border-gray-300  rounded-lg px-4 py-2 w-full"
           />
         </div>

@@ -4,18 +4,20 @@ import Pagination from "@/app/components/pageination/Pageination";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import { SearchPlan } from "../Packages/Add";
+// import { SearchPlan } from "../Packages/Add";
 import CircleLoadier from "@/app/components/ui/CircleLoadier";
 import { PaymentGetAll } from "@/app/models/types.";
 import { withAuth } from "@/app/components/withAuth";
+import ForMobilePayments from "./ForMobilePayments";
+import { SearchInput } from "../Packages/Add";
  const Page = () => {
   const [query, setQuery] = useState("");
   const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   const { data  } = useGet<PaymentGetAll>(`${url}/payment`);
-//   const filter = data?.filter((plan) =>
-//     plan?.clinet?.name.toLowerCase().includes(query.toLowerCase())
-//   );
+  const filter = data?.filter((pay) =>
+    pay?.client.name.toLowerCase().includes(query.toLowerCase())
+  );
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -23,26 +25,29 @@ import { withAuth } from "@/app/components/withAuth";
   const itemsPerPage = 5;
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
-  if (!Array.isArray(data)) return null;
+  if (!Array.isArray(filter)) return null;
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(filter.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const currentItems = data.slice(start, end);
+  const currentItems = filter.slice(start, end);
 
   const goToPage = (page: number) => {
     router.push(`?page=${page}`);
   };
   if(!data)return null
   return (
+    <div>
+      
     <div
       dir="rtl"
       className="container w-[100%] hidden md:block  mx-auto px-4 py-12"
     >
-      {/* <SearchPlan
+      <SearchInput
+      placeholder="ابحث عن اسم العميل"
         onChange={(e: any) => setQuery(e.target.value)}
         value={query}
-      /> */}
+      />
 
       {currentItems.length <= 0 ? (
      <CircleLoadier/>
@@ -83,6 +88,9 @@ import { withAuth } from "@/app/components/withAuth";
           </table>
         </div>
       )}
+   
+    </div>
+       <ForMobilePayments q={query}  setQ={(e:any) => setQuery(e.target.value)}  currentItems={currentItems} />
       <Pagination
         goToPage={goToPage}
         totalPages={totalPages}

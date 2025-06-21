@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense, useState } from "react";
-import { Add, SearchPlan } from "./Add";
+import { Add, SearchInput } from "./Add";
 import { Table } from "./Table";
 import useGet from "@/app/components/hooks/useGet";
 import TableMobile from "./TableMobile";
@@ -17,7 +17,8 @@ return (
     <div dir="rtl" className="container mx-auto px-4 py-8 flex flex-col justify-center items-center w-full gap-8">
     
         {/* <Add /> */}
-        <SearchPlan
+        <SearchInput
+        placeholder="ابحث عن باقة"
           onChange={(e: any) => setQuery(e.target.value)}
           value={query}
         />

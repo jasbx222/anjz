@@ -4,15 +4,21 @@ import React, { FormEvent, useState } from "react";
 import Input from "./Input";
 import usePost from "@/app/components/hooks/usePost";
 import { url } from "@/app/models/types.";
+import {toast} from 'react-toastify';
+type Props = {
+  setAdd: React.Dispatch<React.SetStateAction<boolean>>;
+  add: boolean;
+  refetch: () => void;
+};
 
-export default function FormCoupon({ add, setAdd }: any) {
+export default function FormCoupon({ add, setAdd ,refetch}: Props) {
   const [code, setCode] = useState("");
   const [value, setVal] = useState("");
   const [max_usage_count, setMax_usage] = useState("");
   const [started_at, setStartAt] = useState("");
   const [expired_at, setExAt] = useState("");
   const [res, setRes] = useState("");
-
+// const {refetch}=useRefetch()
   const paylod = {
     code,
     value,
@@ -21,13 +27,14 @@ export default function FormCoupon({ add, setAdd }: any) {
     expired_at,
   };
 
-  const { add: add_new_coubon, response, loading } = usePost();
+  const { add: add_new_coubon, loading } = usePost();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       await add_new_coubon(`${url}/coupon`, paylod, false);
-      setRes("✅ تم إضافة الكوبون بنجاح");
+      toast.success('✅ تم إضافة الكوبون بنجاح"')
+      refetch()
     } catch (error: any) {
       setRes("❌ فشل في إرسال البيانات: " + error.message);
     }
@@ -51,19 +58,6 @@ export default function FormCoupon({ add, setAdd }: any) {
         <h2 className="text-2xl font-bold text-center text-blue-700">
           إضافة كوبون خصم
         </h2>
-
-        {/* رسالة الاستجابة */}
-        {response && (
-          <div
-            className={`text-center p-2 rounded-lg text-sm font-semibold ${
-              response.startsWith("تمت")
-                ? "bg-green-100 text-green-700"
-                : "bg-red-100 text-red-700"
-            }`}
-          >
-            {response}
-          </div>
-        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input

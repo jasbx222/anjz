@@ -35,7 +35,7 @@ export function ForMobile() {
                 <span className="font-semibold text-gray-800">المدة:</span> {item.plan.duration_days} يوم
               </div>
               <div>
-                <span className="font-semibold text-gray-800">عدد التوابع:</span> {item.plan.dependents_count}
+                <span className="font-semibold text-gray-800">عدد المتشركين:</span> {item.plan.dependents_count}
               </div>
               <div className="col-span-2">
                 <span className="font-semibold text-gray-800">الميزات:</span>{" "}

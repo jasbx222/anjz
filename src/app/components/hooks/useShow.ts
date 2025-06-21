@@ -1,13 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getDecryptedToken } from "./useDelete";
 
 export default function useShow<T>(url: string, id: any ) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = useCallback(async()=>{
       try {
           const token = getDecryptedToken()
             if(!token)return null;
@@ -25,10 +24,11 @@ export default function useShow<T>(url: string, id: any ) {
       } finally {
         setLoading(false);
       }
-    };
+    },[]
+  )
+   useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-    if (id) fetchData();
-  }, [url, id]);
-
-  return { data, loading };
+  return { data, loading ,reftch:fetchData};
 }

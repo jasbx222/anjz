@@ -5,8 +5,10 @@ import LoadingThreeDotsJumping from "@/app/components/ui/Loading";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import { SearchPlan } from "../Packages/Add";
+// import { SearchPlan } from "../Packages/Add";
 import CircleLoadier from "@/app/components/ui/CircleLoadier";
+import { SearchInput } from "../Packages/Add";
+import ForMobilePlans from "./ForMobileReports";
 export const Table = () => {
   const [query, setQuery] = useState("");
   const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -37,7 +39,8 @@ export const Table = () => {
       dir="rtl"
       className="container  w-full mx-auto px-4 py-12"
     >
-      <SearchPlan
+      <SearchInput
+      placeholder=""
         onChange={(e: any) => setQuery(e.target.value)}
         value={query}
       />
@@ -45,7 +48,7 @@ export const Table = () => {
       {currentItems.length <= 0 ? (
      <CircleLoadier/>
       ) : (
-        <div className="w-full overflow-x-auto">
+        <div className="w-full hidden md:block overflow-x-auto">
           <table className=" w-full border border-gray-300 rounded-2xl shadow-lg">
             <thead className="bg-[#0177FB] h-[60px] text-white">
               <tr className="text-center text-lg sm:text-xl">
@@ -81,6 +84,7 @@ export const Table = () => {
           </table>
         </div>
       )}
+      <ForMobilePlans currentItems={ currentItems}/>
       <Pagination
         goToPage={goToPage}
         totalPages={totalPages}

@@ -2,21 +2,23 @@
 import useDelete from '@/app/components/hooks/useDelete';
 import useShow from '@/app/components/hooks/useShow';
 import { withAuth } from '@/app/components/withAuth';
-import { CouponShow, url } from '@/app/models/types.';
+import {  CouponShow, url } from '@/app/models/types.';
 import { Delete, Pen } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
-
+// import {useRefetch} from '../../../../context/useRefetch'
 function Page() {
+  const route= useRouter()
   const { id } = useParams();
   const { data, loading } = useShow<CouponShow>(`${url}/coupon`, id);
-const {remove,response,loading:loadingDelete}=useDelete();
-const handleDelete=(id:number)=>{
+const {remove,response}=useDelete();
+  // const { refetch } = useRefetch();
+const handleDelete=async(id:number)=>{
 
-  remove(`${url}/coupon/${id}`);
-
-
+ await remove(`${url}/coupon/${id}`);
+// refetch()
+// route.push('/coupon')
 }
   if (loading)
     return (
@@ -25,7 +27,7 @@ const handleDelete=(id:number)=>{
       </div>
     );
 
-  if (!data) return null;
+  if (!data) return <div>تم الحذف بنجاح</div>;
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center items-start">
